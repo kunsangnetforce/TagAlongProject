@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TagAlong</string>
+    <string name="email">Email</string>
+    <string name="password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="NoAccount">Don\'t have an account ?</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="forgotPass">Forgot Password ?</string>
+    <string name="Or">OR</string>
+    <string name="FacebookLogin">LOGIN WITH FACEBOOK</string>
+    <string name="BarCheck">|</string>
+    <string name="createnewAccount">CREATING NEW ACCOUNT</string>
+</resources>
