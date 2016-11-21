@@ -9,4 +9,5 @@
     <color name="colorLogin">#d43b3d</color>
     <color name="colorFB">#3b5997</color>
     <color name="darkred">#d43b3d</color>
+    <color name="toolbarTextColor">#ffffff</color>
 </resources>

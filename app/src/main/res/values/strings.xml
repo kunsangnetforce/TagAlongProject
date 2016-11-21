@@ -10,4 +10,6 @@
     <string name="FacebookLogin">LOGIN WITH FACEBOOK</string>
     <string name="BarCheck">|</string>
     <string name="createnewAccount">CREATING NEW ACCOUNT</string>
+    <string name="cantrememberpasswrd">Can\'t remember your password ? Enter your Email id. we will send you password</string>
+    <string name="sendButton">Send</string>
 </resources>
