@@ -14,4 +14,27 @@
     <string name="sendButton">Send</string>
     <string name="chatItem">Chat</string>
     <string name="NotiItem">Notification</string>
+    <string name="home">Home</string>
+    <string name="my_profile">My profile</string>
+    <string name="my_car">My car</string>
+    <string name="my_booking">My booking</string>
+    <string name="my_dashboard">My dashboard</string>
+    <string name="find_ride">Find a rind</string>
+    <string name="offer_a_ride">Offer a ride</string>
+    <string name="setting">Settings</string>
+    <string name="how_it_work">How it works?</string>
+    <string name="latest_ride">Latest ride</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="find_a_ride_cap">FIND A RIDE</string>
+    <string name="offer_a_ride_cap">OFFER A RIDE</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="select_a_date">Select a Date</string>
+    <string name="how_you_want_to_offer_this_ride">How you want to offer this ride?</string>
+    <string name="one_way_trip">One way trip</string>
+    <string name="round_trip">Round trip</string>
 </resources>

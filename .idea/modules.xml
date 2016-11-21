@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TagAlong.iml" filepath="$PROJECT_DIR$/TagAlong.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TagAlongProjct.iml" filepath="$PROJECT_DIR$/TagAlongProjct.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

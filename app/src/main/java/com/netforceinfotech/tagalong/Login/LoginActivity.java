@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.netforceinfotech.tagalong.Home.HomeActivity;
 import com.netforceinfotech.tagalong.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,7 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void InitVal() {
         loginButton = (Button) findViewById(R.id.loginButton);
         signupTextView = (TextView) findViewById(R.id.signupTextView);
-        forgotPasswordtextView= (TextView) findViewById(R.id.forgotPasswordtextView);
+        forgotPasswordtextView = (TextView) findViewById(R.id.forgotPasswordtextView);
         signupTextView.setOnClickListener(this);
         forgotPasswordtextView.setOnClickListener(this);
         loginButton.setOnClickListener(this);
@@ -47,17 +48,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             overridePendingTransition(R.anim.enter, R.anim.exit);
             startActivity(intent);
 
-        }if(v.getId()==R.id.forgotPasswordtextView){
+        }
+        if (v.getId() == R.id.forgotPasswordtextView) {
 
-            Intent intent = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
-            overridePendingTransition(R.anim.enter, R.anim.exit);
+            Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
             startActivity(intent);
-        }if(v.getId()==R.id.loginButton){
+            overridePendingTransition(R.anim.enter, R.anim.exit);
+        }
+        if (v.getId() == R.id.loginButton) {
 
-            Toast.makeText(getApplicationContext(),"Login Button Clicked",Toast.LENGTH_LONG).show();
-        }if(v.getId()==R.id.facebookLayout){
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.enter, R.anim.exit);
+        }
+        if (v.getId() == R.id.facebookLayout) {
 
-            Toast.makeText(getApplicationContext(),"FAcebook",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "FAcebook", Toast.LENGTH_LONG).show();
         }
 
     }

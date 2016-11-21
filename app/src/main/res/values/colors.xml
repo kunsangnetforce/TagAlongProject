@@ -10,5 +10,7 @@
     <color name="colorFB">#3b5997</color>
     <color name="darkred">#d43b3d</color>
     <color name="toolbarTextColor">#ffffff</color>
+    <color name="transultion">#a2000000</color>
+    <color name="grey">#acc7b6b6</color>
 
 </resources>
