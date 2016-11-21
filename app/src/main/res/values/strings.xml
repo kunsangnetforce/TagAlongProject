@@ -12,4 +12,6 @@
     <string name="createnewAccount">CREATING NEW ACCOUNT</string>
     <string name="cantrememberpasswrd">Can\'t remember your password ? Enter your Email id. we will send you password</string>
     <string name="sendButton">Send</string>
+    <string name="chatItem">Chat</string>
+    <string name="NotiItem">Notification</string>
 </resources>
