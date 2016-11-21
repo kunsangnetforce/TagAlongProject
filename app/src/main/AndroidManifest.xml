@@ -18,7 +18,8 @@
         <activity android:name=".Login.LoginActivity" />
         <activity android:name=".Login.SignUpActivity" />
         <activity android:name=".Login.ForgotPasswordActivity" />
-        <activity android:name=".Home.HomeActivity"></activity>
+        <activity android:name=".Home.HomeActivity" />
+        <activity android:name=".DriverProfile.DriverProfile"></activity>
     </application>
 
 </manifest>

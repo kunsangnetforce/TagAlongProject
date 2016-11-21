@@ -10,5 +10,6 @@
     <color name="colorFB">#3b5997</color>
     <color name="darkred">#d43b3d</color>
     <color name="toolbarTextColor">#ffffff</color>
+    <color name="colorBlack">#000000</color>
 
 </resources>

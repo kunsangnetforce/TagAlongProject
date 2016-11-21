@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.netforceinfotech.tagalong.DriverProfile.DriverProfile;
 import com.netforceinfotech.tagalong.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -55,6 +55,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }if(v.getId()==R.id.loginButton){
 
             Toast.makeText(getApplicationContext(),"Login Button Clicked",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(LoginActivity.this,DriverProfile.class);
+            overridePendingTransition(R.anim.enter, R.anim.exit);
+            startActivity(intent);
+
         }if(v.getId()==R.id.facebookLayout){
 
             Toast.makeText(getApplicationContext(),"FAcebook",Toast.LENGTH_LONG).show();

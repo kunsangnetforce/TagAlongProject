@@ -14,4 +14,19 @@
     <string name="sendButton">Send</string>
     <string name="chatItem">Chat</string>
     <string name="NotiItem">Notification</string>
+    <string name="rideTotal">6</string>
+    <string name="RidesOffersTextView">Rides Offer</string>
+    <string name="ProfileName">Jon Doe</string>
+    <string name="MemberTextView">Member Since</string>
+    <string name="MemberTextViewValue">6 Jul 2016</string>
+    <string name="GenderTextView">Gender</string>
+    <string name="GenderTextViewValue">Male</string>
+    <string name="PreferencesTextView">Preferences</string>
+    <string name="smokeString">No Smoking</string>
+    <string name="PetString">No Pets</string>
+    <string name="ChatString">I am quiet type</string>
+    <string name="MusicString">Silence is golden</string>
+    <string name="RidesPostedTextView">Rides Posted</string>
+    <string name="rides">Rides Offer</string>
+    <string name="fromTextView">Delhi,India</string>
 </resources>
