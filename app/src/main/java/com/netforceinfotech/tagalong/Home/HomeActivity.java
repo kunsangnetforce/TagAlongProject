@@ -1,6 +1,7 @@
 package com.netforceinfotech.tagalong.Home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.netforceinfotech.tagalong.DriverProfile.DriverProfile;
 import com.netforceinfotech.tagalong.R;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private Menu menu;
     DrawerLayout drawerLayout;
+    private Intent intent;
 
 
     @Override
@@ -148,7 +151,9 @@ public class HomeActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (items.indexOf(menuItem)) {
                     case 0:
-
+                        intent = new Intent(context, DriverProfile.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;
                     case 1:
                         break;

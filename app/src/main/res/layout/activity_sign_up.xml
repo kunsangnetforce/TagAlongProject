@@ -8,8 +8,8 @@
     tools:context="com.netforceinfotech.tagalong.Login.SignUpActivity">
 
     <include
-        android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"></include>
+        android:id="@+id/toolbar"
+        layout="@layout/app_bar"></include>
 
 
     <LinearLayout

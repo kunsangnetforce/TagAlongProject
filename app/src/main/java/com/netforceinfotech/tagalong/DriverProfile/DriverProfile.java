@@ -54,10 +54,10 @@ public class DriverProfile extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.ChatItem:
+            case R.id.itemChat:
                 Toast.makeText(getApplicationContext(), "Chat", Toast.LENGTH_LONG).show();
                 break;
-            case R.id.NotiItem:
+            case R.id.itemNotification:
 
                 Toast.makeText(this, "Notification Selected", Toast.LENGTH_SHORT)
                         .show();

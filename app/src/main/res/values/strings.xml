@@ -37,4 +37,21 @@
     <string name="how_you_want_to_offer_this_ride">How you want to offer this ride?</string>
     <string name="one_way_trip">One way trip</string>
     <string name="round_trip">Round trip</string>
+    <string name="rideTotal">6</string>
+    <string name="RidesOffersTextView">Rides Offer</string>
+    <string name="ProfileName">Jon Doe</string>
+    <string name="MemberTextView">Member Since</string>
+    <string name="MemberTextViewValue">6 Jul 2016</string>
+    <string name="GenderTextView">Gender</string>
+    <string name="GenderTextViewValue">Male</string>
+    <string name="PreferencesTextView">Preferences</string>
+    <string name="smokeString">No Smoking</string>
+    <string name="PetString">No Pets</string>
+    <string name="ChatString">I am quiet type</string>
+    <string name="MusicString">Silence is golden</string>
+    <string name="RidesPostedTextView">Rides Posted</string>
+    <string name="rides">Rides Offer</string>
+    <string name="fromTextView">Delhi,India</string>
+    <string name="signup">Sign Up</string>
+    <string name="forgot_password">Forgot password</string>
 </resources>

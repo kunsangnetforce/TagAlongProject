@@ -45,8 +45,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (v.getId() == R.id.signupTextView) {
 
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-            overridePendingTransition(R.anim.enter, R.anim.exit);
             startActivity(intent);
+            overridePendingTransition(R.anim.enter, R.anim.exit);
 
         }
         if (v.getId() == R.id.forgotPasswordtextView) {
