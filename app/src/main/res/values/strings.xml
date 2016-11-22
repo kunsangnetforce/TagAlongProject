@@ -55,4 +55,7 @@
     <string name="signup">Sign Up</string>
     <string name="forgot_password">Forgot password</string>
     <string name="seat">SEAT</string>
+    <string name="myCarTextView">My Car</string>
+    <string name="comfortTextView">Comfort</string>
+    <string name="addNewCarButton">ADD NEW CAR</string>
 </resources>
