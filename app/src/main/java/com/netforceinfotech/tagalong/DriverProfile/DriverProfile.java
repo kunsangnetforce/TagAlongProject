@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,28 +13,62 @@ import android.widget.Toast;
 
 import com.netforceinfotech.tagalong.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DriverProfile extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private RecyclerView profileRecycler;
+    private List<RideDetailDatas> rideDetailDatases;
+    private RideDetailAdapter rideDetailAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_profile);
+        setupToolbar("DRIVERS PROFILE");
+        InitiateValue();
 
-        InitVal();
     }
 
-    private void InitVal() {
+    private void InitiateValue() {
+
+        profileRecycler = (RecyclerView) findViewById(R.id.profileRideListRcycler);
+
+        rideDetailDatases = new ArrayList<RideDetailDatas>();
+        rideDetailAdapter = new RideDetailAdapter(this,rideDetailDatases);
+        RecyclerView.LayoutManager rmanager= new LinearLayoutManager(getApplicationContext());
+        profileRecycler.setAdapter(rideDetailAdapter);
+        profileRecycler.setLayoutManager(rmanager);
+
+        GetRidesDatas();
+
+    }
+
+    private void GetRidesDatas() {
+
+
+        RideDetailDatas rides= new RideDetailDatas("Delhi,India","Mumbai, Delhi","23/04/2016","5","9:40 PM","$300");
+        rideDetailDatases.add(rides);
+        rides= new RideDetailDatas("Bangalore,India","Chennai, Delhi","23/06/2016","8","9:40 PM","$700");
+        rideDetailDatases.add(rides);
+        rides= new RideDetailDatas("Haryana,India","Simla, Delhi","23/09/2016","3","9:40 PM","$600");
+        rideDetailDatases.add(rides);
+        rideDetailAdapter.notifyDataSetChanged();
+
+
+    }
+
+    private void setupToolbar(String s) {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(s);
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("DRIVERS PROFILE");
-        }
+
     }
 
 
@@ -54,6 +90,10 @@ public class DriverProfile extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+                break;
             case R.id.itemChat:
                 Toast.makeText(getApplicationContext(), "Chat", Toast.LENGTH_LONG).show();
                 break;
