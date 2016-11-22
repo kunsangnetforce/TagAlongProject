@@ -20,7 +20,8 @@
         <activity android:name=".Login.ForgotPasswordActivity" />
         <activity android:name=".Home.HomeActivity" />
         <activity android:name=".DriverProfile.DriverProfile" />
-        <activity android:name=".MyCars.MyCarActivity"></activity>
+        <activity android:name=".MyCars.MyCarActivity" />
+        <activity android:name=".MyCars.RegisterNewCar"></activity>
     </application>
 
 </manifest>

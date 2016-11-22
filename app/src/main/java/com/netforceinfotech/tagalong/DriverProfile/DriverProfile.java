@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.netforceinfotech.tagalong.MyCars.RegisterNewCar;
 import com.netforceinfotech.tagalong.R;
 
 import java.util.ArrayList;
@@ -95,6 +96,8 @@ public class DriverProfile extends AppCompatActivity {
                 overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
                 break;
             case R.id.itemChat:
+                Intent intent = new Intent(DriverProfile.this, RegisterNewCar.class);
+                startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Chat", Toast.LENGTH_LONG).show();
                 break;
             case R.id.itemNotification:

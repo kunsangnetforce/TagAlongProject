@@ -58,4 +58,12 @@
     <string name="myCarTextView">My Car</string>
     <string name="comfortTextView">Comfort</string>
     <string name="addNewCarButton">ADD NEW CAR</string>
+    <string name="car_plate_number">JKQ56</string>
+    <string name="makecarEditText">Make</string>
+    <string name="modelcarEditText">Model</string>
+    <string name="comfortcarEditText">Comfort</string>
+    <string name="seatNumbercarEditText">Number of Seat</string>
+    <string name="colorcarEditText">Color</string>
+    <string name="typecarEditText">Type</string>
+    <string name="Save">Save</string>
 </resources>

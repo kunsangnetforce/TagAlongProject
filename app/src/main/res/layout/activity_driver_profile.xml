@@ -12,6 +12,7 @@
         layout="@layout/app_bar" />
 
     <ScrollView
+
         android:id="@+id/activity_driver_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -185,39 +186,42 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:weightSum="4">
+                        android:weightSum="400">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="100"
+                            android:layout_gravity="center_vertical"
                             android:drawableTop="@drawable/smoke"
                             android:gravity="center"
                             android:text="@string/smokeString" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="1"
+                            android:layout_weight="100"
                             android:drawableTop="@drawable/pets"
                             android:gravity="center"
                             android:text="@string/PetString" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="100"
+                            android:layout_gravity="center"
                             android:drawableTop="@drawable/chat_profile"
                             android:gravity="center"
                             android:text="@string/ChatString" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="100"
                             android:drawableTop="@drawable/music_profile"
                             android:gravity="center"
+                            android:layout_gravity="center"
                             android:text="@string/MusicString" />
                     </LinearLayout>
 
