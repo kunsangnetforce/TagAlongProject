@@ -1,9 +1,9 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.netforceinfotech.tagalong.Home.FindRideFragment">
+    android:focusableInTouchMode="true"
+    tools:context="com.netforceinfotech.tagalong.Home.findride.FindRideFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,6 +12,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:scaleType="fitXY"
             android:id="@+id/imageFindRide"
             android:layout_width="match_parent"
             android:layout_height="240dp" />
@@ -40,9 +41,9 @@
                     android:src="@drawable/ic_marker" />
 
                 <EditText
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:ellipsize="end"
                     android:hint="@string/from"
                     android:maxLines="1" />
@@ -65,9 +66,9 @@
                     android:src="@drawable/ic_marker" />
 
                 <EditText
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:ellipsize="end"
                     android:hint="@string/to"
                     android:maxLines="1" />
@@ -90,9 +91,9 @@
                 android:src="@drawable/ic_calender" />
 
             <EditText
-                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:ellipsize="end"
                 android:hint="@string/select_a_date"
                 android:maxLines="1" />

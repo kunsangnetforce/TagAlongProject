@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.netforceinfotech.tagalong">
 
     <application
@@ -7,7 +8,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.Base">
+        android:theme="@style/AppTheme.Base"
+        tools:replace="android:theme">
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +21,11 @@
         <activity android:name=".Login.SignUpActivity" />
         <activity android:name=".Login.ForgotPasswordActivity" />
         <activity android:name=".Home.HomeActivity" />
-        <activity android:name=".DriverProfile.DriverProfile"></activity>
+        <activity android:name=".DriverProfile.DriverProfile" />
+        <activity android:name=".Home.offerride.RideDetailActivity" />
+        <activity android:name=".Home.offerride.CarDetailActivity" />
+        <activity android:name=".myprofile.MyProfileActivity" />
+        <activity android:name=".chat.MyChatActivity"></activity>
     </application>
 
 </manifest>
