@@ -17,18 +17,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity" />
-        <activity android:name=".login.SignUpActivity" />
-        <activity android:name=".login.ForgotPasswordActivity" />
-        <activity android:name=".home.HomeActivity" />
-        <activity android:name=".driverProfile.DriverProfile" />
-        <activity android:name=".myCars.MyCarActivity" />
-        <activity android:name=".myCars.RegisterNewCar" />
-        <activity android:name=".home.findride.CantFindRideActivity"></activity>
-        <activity android:name=".home.offerride.RideDetailActivity" />
-        <activity android:name=".home.offerride.CarDetailActivity" />
-        <activity android:name=".myprofile.MyProfileActivity" />
-        <activity android:name=".chat1.MyChatActivity"></activity>
+        <activity android:name=".login1.LoginActivity" />
+        <activity android:name=".login1.SignUpActivity" />
+        <activity android:name=".login1.ForgotPasswordActivity" />
+        <activity android:name=".home1.HomeActivity" />
+        <activity android:name=".driverProfile1.DriverProfile" />
+        <activity android:name=".myCars1.MyCarActivity" />
+        <activity android:name=".myCars1.RegisterNewCar" />
+        <activity android:name=".home1.findride.CantFindRideActivity"></activity>
+        <activity android:name=".home1.offerride.RideDetailActivity" />
+        <activity android:name=".home1.offerride.CarDetailActivity" />
+        <activity android:name=".myprofile1.MyProfileActivity" />
+        <activity android:name=".chat.MyChatActivity"></activity>
     </application>
 
 </manifest>

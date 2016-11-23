@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.netforceinfotech.tagalong.home.findride.CantFindRideActivity">
+    tools:context="com.netforceinfotech.tagalong.home1.findride.CantFindRideActivity">
 =======
     tools:context="com.netforceinfotech.tagalong.CantFindRideActivity">
 >>>>>>> remotes/origin/master

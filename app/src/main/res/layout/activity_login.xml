@@ -7,7 +7,7 @@
     android:background="@drawable/splash"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.netforceinfotech.tagalong.login.LoginActivity">
+    tools:context="com.netforceinfotech.tagalong.login1.LoginActivity">
 
     <TextView
         android:layout_width="match_parent"

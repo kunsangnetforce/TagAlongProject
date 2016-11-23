@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.home.offerride;
+package com.netforceinfotech.tagalong.home1.offerride;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

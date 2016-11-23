@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.driverProfile;
+package com.netforceinfotech.tagalong.driverProfile1;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import com.netforceinfotech.tagalong.home.findride.CantFindRideActivity;
+import com.netforceinfotech.tagalong.home1.findride.CantFindRideActivity;
 import com.netforceinfotech.tagalong.R;
 
 import java.util.ArrayList;

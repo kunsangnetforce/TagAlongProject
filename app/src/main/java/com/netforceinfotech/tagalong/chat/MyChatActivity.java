@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.chat1;
+package com.netforceinfotech.tagalong.chat;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

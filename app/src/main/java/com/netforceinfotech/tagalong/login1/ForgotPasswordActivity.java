@@ -1,23 +1,21 @@
-package com.netforceinfotech.tagalong.myCars;
+package com.netforceinfotech.tagalong.login1;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.netforceinfotech.tagalong.R;
 
-
-public class MyCarActivity extends AppCompatActivity {
-
+public class ForgotPasswordActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_car);
-        Toast.makeText(this, "h", Toast.LENGTH_SHORT).show();
-        setupToolbar("MY CARS");
+        setContentView(R.layout.activity_forgot_password);
+
+        setupToolbar(getString(R.string.forgot_password));
     }
 
     private void setupToolbar(String s) {
