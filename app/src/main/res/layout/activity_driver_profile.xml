@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorTextPrimary"
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
     android:orientation="vertical"
->>>>>>> remotes/origin/master
-    tools:context="com.netforceinfotech.tagalong.DriverProfile.DriverProfile">
-=======
-    android:orientation="vertical"
-    tools:context="com.netforceinfotech.tagalong.driverProfile.DriverProfile">
->>>>>>> Stashed changes
+    android:background="@color/colorTextPrimary">
 
     <include
         android:id="@+id/toolbar"
@@ -199,8 +189,8 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="100"
                             android:layout_gravity="center_vertical"
+                            android:layout_weight="100"
                             android:drawableTop="@drawable/smoke"
                             android:gravity="center"
                             android:text="@string/smokeString" />
@@ -217,8 +207,8 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="100"
                             android:layout_gravity="center"
+                            android:layout_weight="100"
                             android:drawableTop="@drawable/chat_profile"
                             android:gravity="center"
                             android:text="@string/ChatString" />
@@ -226,10 +216,10 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_weight="100"
                             android:drawableTop="@drawable/music_profile"
                             android:gravity="center"
-                            android:layout_gravity="center"
                             android:text="@string/MusicString" />
                     </LinearLayout>
 

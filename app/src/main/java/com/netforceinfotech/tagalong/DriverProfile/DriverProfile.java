@@ -9,16 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
 import com.netforceinfotech.tagalong.home.findride.CantFindRideActivity;
->>>>>>> Stashed changes
-=======
-import com.netforceinfotech.tagalong.CantFindRideActivity;
-import com.netforceinfotech.tagalong.MyCars.RegisterNewCar;
->>>>>>> remotes/origin/master
 import com.netforceinfotech.tagalong.R;
 
 import java.util.ArrayList;

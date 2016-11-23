@@ -19,6 +19,9 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.netforceinfotech.tagalong.R;
+import com.netforceinfotech.tagalong.driverProfile.DriverProfile;
+import com.netforceinfotech.tagalong.home.findride.CantFindRideActivity;
+import com.netforceinfotech.tagalong.myCars.MyCarActivity;
 import com.netforceinfotech.tagalong.myprofile.MyProfileActivity;
 
 import java.util.ArrayList;
@@ -176,6 +179,9 @@ public class HomeActivity extends AppCompatActivity {
                         overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;
                     case 1:
+                        intent = new Intent(context, MyCarActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;
                     case 2:
                         break;
@@ -188,8 +194,14 @@ public class HomeActivity extends AppCompatActivity {
                     case 6:
                         break;
                     case 7:
+                        intent = new Intent(context, CantFindRideActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;
                     case 8:
+                        intent = new Intent(context, DriverProfile.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;
 
                     default:

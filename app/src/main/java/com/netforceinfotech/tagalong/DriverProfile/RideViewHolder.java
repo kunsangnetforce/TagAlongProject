@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 package com.netforceinfotech.tagalong.driverProfile;
-=======
-package com.netforceinfotech.tagalong.DriverProfile;
->>>>>>> remotes/origin/master
-
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-
 import com.netforceinfotech.tagalong.R;
 
 /**

@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 package com.netforceinfotech.tagalong.driverProfile;
-=======
-package com.netforceinfotech.tagalong.DriverProfile;
->>>>>>> remotes/origin/master
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

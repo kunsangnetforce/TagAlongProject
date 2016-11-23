@@ -1,15 +1,11 @@
-<<<<<<< HEAD
 package com.netforceinfotech.tagalong.myCars;
-=======
-package com.netforceinfotech.tagalong.MyCars;
->>>>>>> remotes/origin/master
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.netforceinfotech.tagalong.R;
+
 
 public class MyCarActivity extends AppCompatActivity {
 
