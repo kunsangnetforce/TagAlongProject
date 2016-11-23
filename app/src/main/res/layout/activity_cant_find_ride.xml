@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+<<<<<<< HEAD
     tools:context="com.netforceinfotech.tagalong.home.findride.CantFindRideActivity">
+=======
+    tools:context="com.netforceinfotech.tagalong.CantFindRideActivity">
+>>>>>>> remotes/origin/master
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

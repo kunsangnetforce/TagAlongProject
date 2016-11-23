@@ -13,6 +13,7 @@
     <color name="transultion">#a2000000</color>
     <color name="grey">#acc7b6b6</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorTextPrimaryDark">#595959</color>
     <color name="lightgrey">#f1efef</color>
 
 </resources>

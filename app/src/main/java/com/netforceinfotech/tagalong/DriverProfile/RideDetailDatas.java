@@ -8,13 +8,13 @@ public class RideDetailDatas {
 
     private String fromText;
     private String toText;
-    private Date dateofRides;
+    private String dateofRides;
     private String numberofSeat;
     private String hoursTextView;
     private String costPerSeat;
 
 
-    public RideDetailDatas(String fromText, String toText, Date dateofRides, String numberofSeat, String hoursTextView, String costPerSeat) {
+    public RideDetailDatas(String fromText, String toText, String dateofRides, String numberofSeat, String hoursTextView, String costPerSeat) {
         this.fromText = fromText;
         this.toText = toText;
         this.dateofRides = dateofRides;
@@ -39,11 +39,11 @@ public class RideDetailDatas {
         this.toText = toText;
     }
 
-    public Date getDateofRides() {
+    public String  getDateofRides() {
         return dateofRides;
     }
 
-    public void setDateofRides(Date dateofRides) {
+    public void setDateofRides(String dateofRides) {
         this.dateofRides = dateofRides;
     }
 
