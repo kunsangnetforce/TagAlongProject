@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.home1.findride;
+package com.netforceinfotech.tagalong.login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,16 +7,15 @@ import android.view.MenuItem;
 
 import com.netforceinfotech.tagalong.R;
 
-public class CantFindRideActivity extends AppCompatActivity {
+public class ForgotPasswordActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cant_find_ride);
+        setContentView(R.layout.activity_forgot_password);
 
-        setupToolbar("CAN'T FIND RIDE");
-        // Testing Push... 
+        setupToolbar(getString(R.string.forgot_password));
     }
 
     private void setupToolbar(String s) {
@@ -26,6 +25,7 @@ public class CantFindRideActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(s);
+
     }
 
     @Override

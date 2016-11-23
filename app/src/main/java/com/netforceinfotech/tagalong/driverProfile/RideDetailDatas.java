@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.driverProfile1;
+package com.netforceinfotech.tagalong.driverProfile;
 
 /**
  * Created by xyz on 11/21/2016.

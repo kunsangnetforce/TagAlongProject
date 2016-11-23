@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.driverProfile1;
+package com.netforceinfotech.tagalong.driverProfile;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

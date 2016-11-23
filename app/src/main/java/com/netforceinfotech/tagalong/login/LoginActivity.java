@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.login1;
+package com.netforceinfotech.tagalong.login;
 
 import android.content.Intent;
 import android.graphics.Paint;
@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.netforceinfotech.tagalong.home1.HomeActivity;
+import com.netforceinfotech.tagalong.home.HomeActivity;
 import com.netforceinfotech.tagalong.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {

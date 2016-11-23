@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    tools:context="com.netforceinfotech.tagalong.home1.offerride.CarDetailActivity">
+    tools:context="com.netforceinfotech.tagalong.home.offerride.CarDetailActivity">
 
     <LinearLayout
         android:id="@+id/linearLayoutMain"

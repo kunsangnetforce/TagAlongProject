@@ -1,23 +1,22 @@
-package com.netforceinfotech.tagalong.myCars1;
+package com.netforceinfotech.tagalong.home.findride;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.netforceinfotech.tagalong.R;
 
-
-public class MyCarActivity extends AppCompatActivity {
-
+public class CantFindRideActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_car);
-        Toast.makeText(this, "h", Toast.LENGTH_SHORT).show();
-        setupToolbar("MY CARS");
+        setContentView(R.layout.activity_cant_find_ride);
+
+        setupToolbar("CAN'T FIND RIDE");
+        // Testing Push... 
     }
 
     private void setupToolbar(String s) {
@@ -27,7 +26,6 @@ public class MyCarActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(s);
-
     }
 
     @Override

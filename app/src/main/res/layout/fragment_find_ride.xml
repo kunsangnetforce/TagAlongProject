@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    tools:context="com.netforceinfotech.tagalong.home1.findride.FindRideFragment">
+    tools:context="com.netforceinfotech.tagalong.home.findride.FindRideFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

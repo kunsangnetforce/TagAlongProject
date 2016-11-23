@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.home1;
+package com.netforceinfotech.tagalong.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,10 +19,10 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.netforceinfotech.tagalong.R;
-import com.netforceinfotech.tagalong.driverProfile1.DriverProfile;
-import com.netforceinfotech.tagalong.home1.findride.CantFindRideActivity;
-import com.netforceinfotech.tagalong.myCars1.MyCarActivity;
-import com.netforceinfotech.tagalong.myprofile1.MyProfileActivity;
+import com.netforceinfotech.tagalong.driverProfile.DriverProfile;
+import com.netforceinfotech.tagalong.home.findride.CantFindRideActivity;
+import com.netforceinfotech.tagalong.myCars.MyCarActivity;
+import com.netforceinfotech.tagalong.myprofile.MyProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;

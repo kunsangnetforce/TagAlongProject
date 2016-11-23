@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.myprofile1;
+package com.netforceinfotech.tagalong.myprofile;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
