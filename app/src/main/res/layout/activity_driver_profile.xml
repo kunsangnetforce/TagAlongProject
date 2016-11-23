@@ -6,7 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorTextPrimary"
+<<<<<<< Updated upstream
     tools:context="com.netforceinfotech.tagalong.DriverProfile.DriverProfile">
+=======
+    android:orientation="vertical"
+    tools:context="com.netforceinfotech.tagalong.driverProfile.DriverProfile">
+>>>>>>> Stashed changes
 
     <LinearLayout
         android:layout_width="match_parent"

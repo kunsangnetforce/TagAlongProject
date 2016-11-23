@@ -1,6 +1,4 @@
-package com.netforceinfotech.tagalong.DriverProfile;
-
-import java.util.Date;
+package com.netforceinfotech.tagalong.driverProfile;
 
 /**
  * Created by xyz on 11/21/2016.

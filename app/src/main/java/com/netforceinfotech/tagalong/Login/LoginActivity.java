@@ -1,16 +1,15 @@
-package com.netforceinfotech.tagalong.Login;
+package com.netforceinfotech.tagalong.login;
 
 import android.content.Intent;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.netforceinfotech.tagalong.Home.HomeActivity;
+import com.netforceinfotech.tagalong.home.HomeActivity;
 import com.netforceinfotech.tagalong.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {

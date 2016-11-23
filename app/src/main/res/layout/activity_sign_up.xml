@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.netforceinfotech.tagalong.Login.SignUpActivity">
+    tools:context="com.netforceinfotech.tagalong.login.SignUpActivity">
 
     <include
         android:id="@+id/toolbar"

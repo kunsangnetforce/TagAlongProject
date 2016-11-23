@@ -1,7 +1,6 @@
-package com.netforceinfotech.tagalong.DriverProfile;
+package com.netforceinfotech.tagalong.driverProfile;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+<<<<<<< Updated upstream
+=======
+import com.netforceinfotech.tagalong.home.findride.CantFindRideActivity;
+>>>>>>> Stashed changes
 import com.netforceinfotech.tagalong.R;
 
 public class DriverProfile extends AppCompatActivity {

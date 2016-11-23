@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.Login;
+package com.netforceinfotech.tagalong.login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

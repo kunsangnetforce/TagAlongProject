@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.Home;
+package com.netforceinfotech.tagalong.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.netforceinfotech.tagalong.DriverProfile.DriverProfile;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.myprofile.MyProfileActivity;
 

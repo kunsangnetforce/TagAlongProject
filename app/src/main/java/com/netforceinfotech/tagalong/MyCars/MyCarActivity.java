@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.login;
+package com.netforceinfotech.tagalong.myCars;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,15 +7,16 @@ import android.view.MenuItem;
 
 import com.netforceinfotech.tagalong.R;
 
-public class ForgotPasswordActivity extends AppCompatActivity {
+public class MyCarActivity extends AppCompatActivity {
+
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_password);
+        setContentView(R.layout.activity_my_car);
 
-        setupToolbar(getString(R.string.forgot_password));
+        setupToolbar("MY CARS");
     }
 
     private void setupToolbar(String s) {

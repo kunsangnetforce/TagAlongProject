@@ -1,11 +1,11 @@
-package com.netforceinfotech.tagalong.Home;
+package com.netforceinfotech.tagalong.home;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.netforceinfotech.tagalong.Home.findride.FindRideFragment;
-import com.netforceinfotech.tagalong.Home.offerride.OfferFragment;
+import com.netforceinfotech.tagalong.home.findride.FindRideFragment;
+import com.netforceinfotech.tagalong.home.offerride.OfferFragment;
 
 public class PagerAdapterHome extends FragmentStatePagerAdapter {
     int mNumOfTabs;

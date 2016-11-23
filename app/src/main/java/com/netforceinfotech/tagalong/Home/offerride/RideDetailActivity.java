@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.Home.offerride;
+package com.netforceinfotech.tagalong.home.offerride;
 
 import android.content.Context;
 import android.content.Intent;
