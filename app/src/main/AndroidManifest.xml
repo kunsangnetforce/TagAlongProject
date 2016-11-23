@@ -28,7 +28,7 @@
         <activity android:name=".home.offerride.RideDetailActivity" />
         <activity android:name=".home.offerride.CarDetailActivity" />
         <activity android:name=".myprofile.MyProfileActivity" />
-        <activity android:name=".chat.MyChatActivity"></activity>
+        <activity android:name=".chat1.MyChatActivity"></activity>
     </application>
 
 </manifest>
