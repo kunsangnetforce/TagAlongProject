@@ -3,6 +3,7 @@ package com.netforceinfotech.tagalong.Home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -15,8 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.netforceinfotech.tagalong.DriverProfile.DriverProfile;
 import com.netforceinfotech.tagalong.R;
+import com.netforceinfotech.tagalong.myprofile.MyProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +44,23 @@ public class HomeActivity extends AppCompatActivity {
         setupToolBar(getString(R.string.home));
         setupNavigationView();
         setupTab();
+        if (true) {
+            showReviewPopUp();
+        }
+    }
+
+    private void showReviewPopUp() {
+        new MaterialDialog.Builder(this)
+                .customView(R.layout.review_pop_up, false)
+                .positiveText(getString(R.string.submit))
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        showMessage("Submit review");
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -75,7 +96,7 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapterDashboard adapter = new PagerAdapterDashboard
+        final PagerAdapterHome adapter = new PagerAdapterHome
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -151,7 +172,7 @@ public class HomeActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (items.indexOf(menuItem)) {
                     case 0:
-                        intent = new Intent(context, DriverProfile.class);
+                        intent = new Intent(context, MyProfileActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;

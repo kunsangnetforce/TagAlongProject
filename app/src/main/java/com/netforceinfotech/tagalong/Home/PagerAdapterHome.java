@@ -4,10 +4,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class PagerAdapterDashboard extends FragmentStatePagerAdapter {
+import com.netforceinfotech.tagalong.Home.findride.FindRideFragment;
+import com.netforceinfotech.tagalong.Home.offerride.OfferFragment;
+
+public class PagerAdapterHome extends FragmentStatePagerAdapter {
     int mNumOfTabs;
 
-    public PagerAdapterDashboard(FragmentManager fm, int NumOfTabs) {
+    public PagerAdapterHome(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
     }
