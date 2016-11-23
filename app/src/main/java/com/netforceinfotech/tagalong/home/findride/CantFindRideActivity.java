@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.Login;
+package com.netforceinfotech.tagalong.home.findride;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,18 +7,16 @@ import android.view.MenuItem;
 
 import com.netforceinfotech.tagalong.R;
 
-public class SignUpActivity extends AppCompatActivity {
-
+public class CantFindRideActivity extends AppCompatActivity {
     private Toolbar toolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_cant_find_ride);
 
-        setupToolbar(getString(R.string.signup));
-//hello
+        setupToolbar("CAN'T FIND RIDE");
+        // Testing Push... 
     }
 
     private void setupToolbar(String s) {
@@ -28,7 +26,6 @@ public class SignUpActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(s);
-
     }
 
     @Override

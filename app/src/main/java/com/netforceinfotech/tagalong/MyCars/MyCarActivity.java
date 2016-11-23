@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.Login;
+package com.netforceinfotech.tagalong.MyCars;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,18 +7,16 @@ import android.view.MenuItem;
 
 import com.netforceinfotech.tagalong.R;
 
-public class SignUpActivity extends AppCompatActivity {
+public class MyCarActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_my_car);
 
-        setupToolbar(getString(R.string.signup));
-//hello
+        setupToolbar("MY CARS");
     }
 
     private void setupToolbar(String s) {
