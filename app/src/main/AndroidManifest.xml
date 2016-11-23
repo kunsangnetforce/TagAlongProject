@@ -21,7 +21,8 @@
         <activity android:name=".Home.HomeActivity" />
         <activity android:name=".DriverProfile.DriverProfile" />
         <activity android:name=".MyCars.MyCarActivity" />
-        <activity android:name=".MyCars.RegisterNewCar"></activity>
+        <activity android:name=".MyCars.RegisterNewCar" />
+        <activity android:name=".CantFindRideActivity"></activity>
     </application>
 
 </manifest>

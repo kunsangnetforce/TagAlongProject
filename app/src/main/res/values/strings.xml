@@ -66,4 +66,5 @@
     <string name="colorcarEditText">Color</string>
     <string name="typecarEditText">Type</string>
     <string name="Save">Save</string>
+    <string name="can_t_find_rides_for_you">Can\'t Find rides for you..?</string>
 </resources>
