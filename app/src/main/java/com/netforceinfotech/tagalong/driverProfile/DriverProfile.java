@@ -9,8 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import com.netforceinfotech.tagalong.home.findride.CantFindRideActivity;
+
 import com.netforceinfotech.tagalong.R;
+import com.netforceinfotech.tagalong.home.findride.paymentmodes.PaymentModeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,8 +95,6 @@ public class DriverProfile extends AppCompatActivity {
                 overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
                 break;
             case R.id.itemChat:
-                Intent intent = new Intent(DriverProfile.this, CantFindRideActivity.class);
-                startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Chat", Toast.LENGTH_LONG).show();
                 break;
             case R.id.itemNotification:

@@ -39,7 +39,7 @@
     <string name="round_trip">Round trip</string>
     <string name="rideTotal">6</string>
     <string name="RidesOffersTextView">Rides Offer</string>
-    <string name="ProfileName">Jon Doe</string>
+    <string name="ProfileName">JON DOE</string>
     <string name="MemberTextView">Member Since</string>
     <string name="MemberTextViewValue">6 Jul 2016</string>
     <string name="GenderTextView">Gender</string>
@@ -98,4 +98,15 @@
     <string name="quick_description">Quick description</string>
     <string name="preference">Preference</string>
     <string name="save">Save</string>
+    <string name="saved_cards">Saved Cards</string>
+    <string name="new_cards">New Cards</string>
+    <string name="pay">PAY</string>
+    <string name="cardIdEdidText">7878-2334-3435-3456</string>
+    <string name="userNameTextView">NAME :</string>
+    <string name="expDateTextView">EXP DATE :</string>
+    <string name="cardExpireEditText">06 / 23</string>
+    <string name="cvvTextView">CVV :</string>
+    <string name="cvvEditText">566</string>
+    <string name="pay_via_netbanking">Pay Via netbanking</string>
+    <string name="pay_via_wallet">Pay via Wallet</string>
 </resources>
