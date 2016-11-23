@@ -34,7 +34,6 @@ public class CantFindRideActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
-
                 break;
         }
         return super.onOptionsItemSelected(item);

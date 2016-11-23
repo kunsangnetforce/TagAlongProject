@@ -4,7 +4,9 @@
     <color name="colorPrimaryDark">#102c55</color>
     <color name="colorAccent">#d43b3d</color>
     <color name="white">#ffffff</color>
-    <color name="colorTextPrimary">#aba6a6</color>
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#757575</color>
+
     <color name="viewLineOnActive">#ffffff</color>
     <color name="colorLogin">#d43b3d</color>
     <color name="colorFB">#3b5997</color>

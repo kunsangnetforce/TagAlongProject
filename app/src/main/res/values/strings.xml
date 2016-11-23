@@ -98,4 +98,12 @@
     <string name="quick_description">Quick description</string>
     <string name="preference">Preference</string>
     <string name="save">Save</string>
+    <string name="search">Search</string>
+    <string name="mychat">My chat</string>
+    <string name="my_bookings">My Bookings</string>
+    <string name="rides_offer">Rides Offer</string>
+    <string name="money_saved">Money Saved</string>
+    <string name="my_alert">My Alert</string>
+    <string name="paid_by_you">Paid by you</string>
+    <string name="ratings">Ratings</string>
 </resources>

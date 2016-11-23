@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.netforceinfotech.tagalong.R;
+import com.netforceinfotech.tagalong.chat.MyChatActivity;
+import com.netforceinfotech.tagalong.dashboard.MyDashboardActivity;
 import com.netforceinfotech.tagalong.driverProfile.DriverProfile;
 import com.netforceinfotech.tagalong.home.findride.CantFindRideActivity;
 import com.netforceinfotech.tagalong.myCars.MyCarActivity;
@@ -65,6 +67,16 @@ public class HomeActivity extends AppCompatActivity {
                 .show();
     }
 
+    private void setupToolBar(String app_name) {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(app_name);
+
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu, menu);
@@ -75,7 +87,8 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.itemChat:
-                showMessage("Chat method called");
+                intent = new Intent(context, MyChatActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.itemNotification:
                 // Exit option clicked.
@@ -186,6 +199,9 @@ public class HomeActivity extends AppCompatActivity {
                     case 2:
                         break;
                     case 3:
+                        intent = new Intent(context, MyDashboardActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;
                     case 4:
                         break;
@@ -230,88 +246,5 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    /* private void setupNavigationBar() {
-         PrimaryDrawerItem myProfile = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.my_profile).withIcon(R.drawable.ic_default);
-         PrimaryDrawerItem myCar = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.my_car).withIcon(R.drawable.ic_car);
-         PrimaryDrawerItem myBooking = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.my_booking).withIcon(R.drawable.ic_booking);
-         PrimaryDrawerItem myDashboard = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.my_dashboard).withIcon(R.drawable.ic_dash);
-         PrimaryDrawerItem findRide = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.find_ride).withIcon(R.drawable.ic_search);
-         PrimaryDrawerItem offerRide = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.offer_a_ride).withIcon(R.drawable.ic_offer);
-         PrimaryDrawerItem settings = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.setting).withIcon(R.drawable.ic_setting);
-         PrimaryDrawerItem howItWorks = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.how_it_work).withIcon(R.drawable.ic_help);
-         PrimaryDrawerItem latestRide = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.latest_ride).withIcon(R.drawable.ic_latest);
 
-
-         AccountHeader accountHeader = setupAccountHeader();
- //create the drawer and remember the `Drawer` result object
-         Drawer result = new DrawerBuilder()
-                 .withActivity(this)
-                 .withAccountHeader(accountHeader)
-                 .withToolbar(toolbar)
-                 .addDrawerItems(
-                         myProfile,
-                         myCar, myBooking, myDashboard, findRide, offerRide, settings, howItWorks, latestRide
-                 )
-                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                     @Override
-                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                         setupNavigationOnclick(position);
-                         return false;
-                     }
-                 })
-                 .build();
-     }
-
-     private AccountHeader setupAccountHeader() {
-         // Create the AccountHeader
-         AccountHeader headerResult = new AccountHeaderBuilder()
-                 .withActivity(this)
-                 .withSelectionListEnabledForSingleProfile(false)
-                 .addProfiles(
-                         new ProfileDrawerItem().withName("Name").withIcon(ContextCompat.getDrawable(context, R.drawable.ic_default))
-                 ).withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-                     @Override
-                     public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
-                         return false;
-                     }
-                 })
-                 .build();
-         return headerResult;
-
-     }
-
-     private void setupNavigationOnclick(int position) {
-         switch (position) {
-             case 0:
-                 break;
-             case 1:
-                 break;
-             case 2:
-                 break;
-             case 3:
-                 break;
-             case 4:
-                 break;
-             case 5:
-                 break;
-             case 6:
-                 break;
-             case 7:
-                 break;
-             case 8:
-                 break;
-
-         }
-     }
-
-    */
-    private void setupToolBar(String app_name) {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(app_name);
-
-
-    }
 }
