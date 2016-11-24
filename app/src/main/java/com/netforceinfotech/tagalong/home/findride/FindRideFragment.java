@@ -2,6 +2,7 @@ package com.netforceinfotech.tagalong.home.findride;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,7 @@ import com.netforceinfotech.tagalong.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FindRideFragment extends Fragment {
+public class FindRideFragment extends Fragment implements View.OnClickListener {
 
 
     ImageView imageFindRide;
@@ -46,8 +47,20 @@ public class FindRideFragment extends Fragment {
                 .asBitmap()
                 .encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG, 100))
                 .load(R.drawable.image).into(imageFindRide);
+        view.findViewById(R.id.buttonSearch).setOnClickListener(this);
 
 
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.buttonSearch:
+                Intent intent=new Intent(context,CantFindRideActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
+
+                break;
+        }
+    }
 }
