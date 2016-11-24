@@ -115,4 +115,6 @@
     <string name="my_alert">My alerts</string>
     <string name="paid_by_you">Paid by You</string>
     <string name="ratings">Ratings</string>
+    <string name="search">Search</string>
+    <string name="mychat">My Chat</string>
 </resources>
