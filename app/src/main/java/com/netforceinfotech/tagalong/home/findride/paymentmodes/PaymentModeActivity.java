@@ -3,20 +3,29 @@ package com.netforceinfotech.tagalong.home.findride.paymentmodes;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.netforceinfotech.tagalong.R;
 
-public class PaymentModeActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class PaymentModeActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
-    private ListView cardnoListView;
-    private ArrayAdapter<String> listadapter;
-    private Context context;
+    Context context;
+    private RecyclerView cardRecycle;
+    private List<CardListData> cardlist;
+    private CardCustomAdapter cardAdapter;
+    public EditText userCardNoEditText;
+
 
 
     @Override
@@ -28,17 +37,31 @@ public class PaymentModeActivity extends AppCompatActivity {
         setupToolbar("PAYMENT MODE");
 
         initialValue();
+
+
     }
 
     private void initialValue() {
-        String[] cardList = {"4907 xxxx xxxx x975", "4567 xxxx xxxx x678", "4556 xxxx xxxx x673"};
 
+        cardRecycle = (RecyclerView) findViewById(R.id.cardRecycle);
 
-        cardnoListView = (ListView) findViewById(R.id.cardnoListView);
-        listadapter = new ArrayAdapter<>(this,R.layout.payment_card_row_list,R.id.userCardNoTextView,cardList);
-        cardnoListView.setAdapter(listadapter);
+        cardlist = new ArrayList<CardListData>();
+        cardAdapter = new CardCustomAdapter(this,cardlist);
+        RecyclerView.LayoutManager rmanager= new LinearLayoutManager(getApplicationContext());
+        cardRecycle.setAdapter(cardAdapter);
+        cardRecycle.setLayoutManager(rmanager);
+        userCardNoEditText = (EditText) findViewById(R.id.userCardNoEditText);
+        userCardNoEditText.addTextChangedListener(new FourDigitCardFormatWatcher());
+        GetCardData();
+    }
 
+    private void GetCardData() {
 
+        CardListData cardlists= new CardListData("9009303030302010");
+        cardlist.add(cardlists);
+        cardlists = new CardListData("9878393929234562");
+        cardlist.add(cardlists);
+        cardAdapter.notifyDataSetChanged();
     }
 
     private void setupToolbar(String s) {
