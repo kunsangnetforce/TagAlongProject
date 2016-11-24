@@ -109,4 +109,10 @@
     <string name="cvvEditText">566</string>
     <string name="pay_via_netbanking">Pay Via netbanking</string>
     <string name="pay_via_wallet">Pay via Wallet</string>
+    <string name="my_bookings">My Bookings</string>
+    <string name="rides_offer">Rides offered</string>
+    <string name="money_saved">Money Saved</string>
+    <string name="my_alert">My alerts</string>
+    <string name="paid_by_you">Paid by You</string>
+    <string name="ratings">Ratings</string>
 </resources>
