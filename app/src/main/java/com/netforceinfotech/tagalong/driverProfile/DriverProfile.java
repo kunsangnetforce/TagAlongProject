@@ -95,6 +95,8 @@ public class DriverProfile extends AppCompatActivity {
                 overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
                 break;
             case R.id.itemChat:
+                Intent intent = new Intent(DriverProfile.this,PaymentModeActivity.class);
+                startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Chat", Toast.LENGTH_LONG).show();
                 break;
             case R.id.itemNotification:

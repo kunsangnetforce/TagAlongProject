@@ -76,14 +76,12 @@
                         android:textColor="@color/colorBlack"
                         android:textSize="18sp" />
 
-                    <ListView
+                  <android.support.v7.widget.RecyclerView
+                      android:id="@+id/cardRecycle"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
 
-                        android:id="@+id/cardnoListView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                    </ListView>
+                  </android.support.v7.widget.RecyclerView>
 
                 </LinearLayout>
 
@@ -120,8 +118,8 @@
                                 android:src="@drawable/ic_mastarcard" />
 
                             <EditText
-                                android:inputType="number"
-                                android:id="@+id/editText21"
+                                android:inputType="phone"
+                                android:id="@+id/userCardNoEditText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
@@ -131,6 +129,7 @@
                                 android:ellipsize="end"
                                 android:hint="@string/cardIdEdidText"
                                 android:maxLines="1"
+                                android:maxLength="19"
                                 android:paddingLeft="10dp" />
                         </RelativeLayout>
 
@@ -218,6 +217,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="6dp"
                                 android:text="@string/cvvTextView"
+                                android:maxLength="5"
                                 android:textSize="16sp" />
 
 
@@ -229,6 +229,7 @@
                                 android:background="@android:color/transparent"
                                 android:ellipsize="end"
                                 android:hint="@string/cvvEditText"
+                                android:maxLength="3"
                                 android:maxLines="1" />
 
                         </LinearLayout>
