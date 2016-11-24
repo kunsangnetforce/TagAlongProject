@@ -29,7 +29,12 @@
         <activity android:name=".home.offerride.CarDetailActivity" />
         <activity android:name=".myprofile.MyProfileActivity" />
         <activity android:name=".chat.MyChatActivity" />
-        <activity android:name=".home.findride.paymentmodes.PaymentModeActivity"></activity>
+        <activity android:name=".dashboard.MyDashboardActivity" />
+        <activity android:name=".home.findride.paymentmodes.PaymentModeActivity" />
+        <activity android:name=".chat.driverchat.DriverChatActivity" />
+        <activity android:name=".home.findride.ride_available.RidesActivity" />
+        <activity android:name=".home.findride.applyfilter.ApplyFilterActivity" />
+        <activity android:name=".home.findride.ride_available.BookingSeatsActivity"></activity>
     </application>
 
 </manifest>

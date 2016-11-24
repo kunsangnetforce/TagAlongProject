@@ -15,7 +15,7 @@ public class CantFindRideActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cant_find_ride);
 
-        setupToolbar("CAN'T FIND RIDE");
+        setupToolbar(getString(R.string.cant_find_ride));
         // Testing Push... 
     }
 

@@ -1,18 +1,14 @@
-package com.netforceinfotech.tagalong.chat;
+package com.netforceinfotech.tagalong.chat.driverchat;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.netforceinfotech.tagalong.R;
-import com.netforceinfotech.tagalong.chat.driverchat.DriverChatActivity;
 
 import java.util.ArrayList;
 
@@ -21,8 +17,8 @@ import java.util.ArrayList;
  */
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int NORMAL = 0;
-    private static final int START = 1;
+    private static final int YOU = 0;
+    private static final int OTHER = 1;
     private final LayoutInflater inflater;
     private Context context;
     ArrayList<MyData> myDatas;
@@ -33,24 +29,28 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         inflater = LayoutInflater.from(context);
     }
 
-    /*  @Override
-      public int getItemViewType(int position) {
-          if (itemList.get(position).image.isEmpty()) {
-              return SIMPLE_TYPE;
-          } else {
-              return IMAGE_TYPE;
-          }
-      }
-  */
+    @Override
+    public int getItemViewType(int position) {
+        if (myDatas.get(position).you) {
+            return YOU;
+        } else {
+            return OTHER;
+        }
+    }
 
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-
-        View view = inflater.inflate(R.layout.row_my_chat, parent, false);
-        MyHolder viewHolder = new MyHolder(view);
-        return viewHolder;
+        if (viewType==YOU) {
+            View view = inflater.inflate(R.layout.row_my_comment, parent, false);
+            MyHolder viewHolder = new MyHolder(view);
+            return viewHolder;
+        } else {
+            View view = inflater.inflate(R.layout.row_other_comment, parent, false);
+            MyHolder viewHolder = new MyHolder(view);
+            return viewHolder;
+        }
     }
 
     @Override
@@ -58,8 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DriverChatActivity.class);
-                context.startActivity(intent);
+
             }
         });
 
@@ -73,6 +72,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemCount() {
         // return myDatas.size();
-        return 10;
+        return myDatas.size();
     }
 }

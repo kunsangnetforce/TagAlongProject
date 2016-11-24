@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.BitmapEncoder;
 import com.netforceinfotech.tagalong.R;
+import com.netforceinfotech.tagalong.home.findride.ride_available.RidesActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,7 +57,7 @@ public class FindRideFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.buttonSearch:
-                Intent intent=new Intent(context,CantFindRideActivity.class);
+                Intent intent=new Intent(context,RidesActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
 

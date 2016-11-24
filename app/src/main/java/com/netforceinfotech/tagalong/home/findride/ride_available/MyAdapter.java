@@ -1,16 +1,14 @@
-package com.netforceinfotech.tagalong.chat;
+package com.netforceinfotech.tagalong.home.findride.ride_available;
 
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.chat.driverchat.DriverChatActivity;
 
@@ -48,7 +46,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View view = inflater.inflate(R.layout.row_my_chat, parent, false);
+        View view = inflater.inflate(R.layout.row_rides_available, parent, false);
         MyHolder viewHolder = new MyHolder(view);
         return viewHolder;
     }
@@ -58,7 +56,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DriverChatActivity.class);
+                Intent intent = new Intent(context, BookingSeatsActivity.class);
                 context.startActivity(intent);
             }
         });
