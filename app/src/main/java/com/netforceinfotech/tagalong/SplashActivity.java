@@ -24,6 +24,6 @@ public class SplashActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.enter, R.anim.exit);
                 finish();
             }
-        }, 3000);
+        }, 2000);
     }
 }
