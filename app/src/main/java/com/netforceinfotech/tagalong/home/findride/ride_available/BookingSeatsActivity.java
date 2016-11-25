@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.chat.MyChatActivity;
 import com.netforceinfotech.tagalong.home.findride.applyfilter.ApplyFilterActivity;
+import com.netforceinfotech.tagalong.home.findride.paymentmodes.PaymentModeActivity;
 
 public class BookingSeatsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,7 +25,7 @@ public class BookingSeatsActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_seats);
-        context=this;
+        context = this;
         initView();
         setupToolBar(getString(R.string.bookingseat));
     }
@@ -79,7 +80,8 @@ public class BookingSeatsActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.linearLayoutProceedPayment:
-                showMessage("method cadlled");
+                intent = new Intent(context, PaymentModeActivity.class);
+                startActivity(intent);
                 break;
         }
     }
