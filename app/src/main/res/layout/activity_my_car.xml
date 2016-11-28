@@ -7,21 +7,25 @@
     android:orientation="vertical"
     tools:context="com.netforceinfotech.tagalong.myCars.MyCarActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/app_bar" />
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/app_bar" />
+    </android.support.design.widget.AppBarLayout>
 
 
     <ScrollView
+        android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorTextPrimary"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <RelativeLayout
 
@@ -95,15 +99,14 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/profile_image" />
-
+                    android:src="@drawable/audi_car" />
 
 
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@color/white"
@@ -119,17 +122,18 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18dp"
                         android:id="@+id/myCarTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
-                        android:text="@string/myCarTextView" />
+                        android:text="@string/myCarTextView"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18dp" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
                         android:hint="Audi A6"
                         android:textColor="@color/colorTextPrimary" />
 
@@ -146,17 +150,18 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18dp"
                         android:id="@+id/comfortTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
-                        android:text="@string/comfortTextView" />
+                        android:text="@string/comfortTextView"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18dp" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
                         android:hint="Luxury"
                         android:textColor="@color/colorTextPrimary" />
 

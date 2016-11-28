@@ -13,6 +13,10 @@ public class RideDetailDatas {
     private String hoursTextView;
     private String costPerSeat;
 
+    public RideDetailDatas(){
+
+
+    }
 
     public RideDetailDatas(String fromText, String toText, String dateofRides, String numberofSeat, String hoursTextView, String costPerSeat) {
         this.fromText = fromText;

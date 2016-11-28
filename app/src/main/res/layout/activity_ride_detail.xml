@@ -9,6 +9,7 @@
     tools:context="com.netforceinfotech.tagalong.home.offerride.RideDetailActivity">
 
     <LinearLayout
+
         android:layout_alignParentTop="true"
         android:layout_above="@+id/textViewNext"
         android:id="@+id/linearLayoutMain"
@@ -38,6 +39,7 @@
             android:text="@string/one_way_trip"
             android:textSize="20sp" />
         <ScrollView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/textViewNext"
@@ -123,7 +125,7 @@
                             android:id="@+id/imageView"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/chat_profile" />
+                            android:src="@drawable/ic_addstopover" />
 
                         <EditText
                             android:layout_width="match_parent"
@@ -212,7 +214,7 @@
                             <ImageView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                android:src="@drawable/chat_profile" />
+                                android:src="@drawable/ic_addstopover" />
 
                             <EditText
                                 android:layout_width="match_parent"
@@ -334,6 +336,8 @@
                     android:gravity="center">
 
                     <LinearLayout
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="30dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/round_cornor_borderaccent"
@@ -360,6 +364,7 @@
     </LinearLayout>
 
     <TextView
+
         android:id="@+id/textViewNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

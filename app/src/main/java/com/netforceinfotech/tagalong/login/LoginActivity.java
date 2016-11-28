@@ -2,6 +2,7 @@ package com.netforceinfotech.tagalong.login;
 
 import android.content.Intent;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         forgotPasswordtextView.setOnClickListener(this);
         loginButton.setOnClickListener(this);
         signupTextView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+
+
 
 
     }
