@@ -10,11 +10,11 @@
 
     <LinearLayout
 
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/textViewNext"
         android:id="@+id/linearLayoutMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/textViewNext"
+        android:layout_alignParentTop="true"
         android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
@@ -29,6 +29,7 @@
 
             </include>
         </android.support.design.widget.AppBarLayout>
+
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
@@ -38,6 +39,7 @@
             android:padding="16dp"
             android:text="@string/one_way_trip"
             android:textSize="20sp" />
+
         <ScrollView
 
             android:layout_width="match_parent"
@@ -51,6 +53,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -58,54 +61,80 @@
                     android:orientation="horizontal"
                     android:weightSum="100">
 
+
                     <LinearLayout
                         android:id="@+id/linearLayoutFrom"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="16dp"
                         android:layout_weight="50"
-                        android:background="@drawable/round_cornor"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_margin="6dp"
-                            android:src="@drawable/ic_marker" />
-
-                        <EditText
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:ellipsize="end"
-                            android:hint="@string/from"
-                            android:maxLines="1" />
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/ic_marker" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:ellipsize="end"
+                                android:hint="@string/from"
+                                android:maxLines="1" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey" />
+
+
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:id="@+id/linearLayoutTo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
                         android:layout_weight="50"
-                        android:background="@drawable/round_cornor"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_margin="6dp"
-                            android:src="@drawable/ic_marker" />
-
-                        <EditText
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:ellipsize="end"
-                            android:hint="@string/to"
-                            android:maxLines="1" />
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/ic_marker" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:ellipsize="end"
+                                android:hint="@string/to"
+                                android:maxLines="1" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey" />
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -149,24 +178,40 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/round_cornor"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:clickable="true"
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="6dp"
-                        android:src="@drawable/ic_calender" />
+                    android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/editText2"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:ellipsize="end"
-                        android:hint="@string/departure_date"
-                        android:maxLines="1" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="6dp"
+                            android:src="@drawable/ic_calender" />
+
+                        <EditText
+                            android:textColor="@color/grey"
+                            android:focusable="false"
+                            android:id="@+id/departureEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:clickable="true"
+                            android:ellipsize="end"
+                            android:hint="@string/departure_date"
+                            android:maxLines="1" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -174,23 +219,38 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/round_cornor"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:clickable="true"
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="6dp"
-                        android:src="@drawable/ic_calender" />
+                    android:orientation="vertical">
 
-                    <EditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:ellipsize="end"
-                        android:hint="@string/departure_time"
-                        android:maxLines="1" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="6dp"
+                            android:src="@drawable/ic_time" />
+
+                        <EditText
+                            android:textColor="@color/grey"
+                            android:focusable="false"
+                            android:id="@+id/departTimeEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:ellipsize="end"
+                            android:hint="@string/departure_time"
+                            android:maxLines="1" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -217,6 +277,7 @@
                                 android:src="@drawable/ic_addstopover" />
 
                             <EditText
+                                android:focusable="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="6dp"
@@ -238,23 +299,37 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="16dp"
-                        android:background="@drawable/round_cornor"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:clickable="true"
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_margin="6dp"
-                            android:src="@drawable/ic_calender" />
-
-                        <EditText
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:ellipsize="end"
-                            android:hint="@string/return_date"
-                            android:maxLines="1" />
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/ic_calender" />
+
+                            <EditText
+                                android:textColor="@color/grey"
+                                android:focusable="false"
+                                android:id="@+id/returnDateEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:ellipsize="end"
+                                android:hint="@string/return_date"
+                                android:maxLines="1" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -262,23 +337,37 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="16dp"
-                        android:background="@drawable/round_cornor"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:clickable="true"
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_margin="6dp"
-                            android:src="@drawable/ic_calender" />
-
-                        <EditText
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:ellipsize="end"
-                            android:hint="@string/return_time"
-                            android:maxLines="1" />
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/ic_time" />
+
+                            <EditText
+                                android:textColor="@color/grey"
+                                android:focusable="false"
+                                android:id="@+id/returnTimeEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:ellipsize="end"
+                                android:hint="@string/return_time"
+                                android:maxLines="1" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -287,23 +376,36 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/round_cornor"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:clickable="true"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="6dp"
-                        android:src="@drawable/ic_calender" />
-
-                    <EditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:ellipsize="end"
-                        android:hint="@string/enter_price"
-                        android:maxLines="1" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="6dp"
+                            android:src="@drawable/ic_dollar" />
+
+                        <EditText
+                            android:textColor="@color/grey"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:ellipsize="end"
+                            android:hint="@string/enter_price"
+                            android:maxLines="1" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -336,10 +438,10 @@
                     android:gravity="center">
 
                     <LinearLayout
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="30dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginTop="15dp"
                         android:background="@drawable/round_cornor_borderaccent"
                         android:orientation="horizontal"
                         android:paddingBottom="10dp"
@@ -350,7 +452,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/suggested_prince" />
+                            android:text="@string/suggested_price" />
 
                         <TextView
                             android:layout_width="wrap_content"

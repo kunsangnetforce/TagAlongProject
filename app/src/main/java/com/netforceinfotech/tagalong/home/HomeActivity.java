@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         context = this;
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        setupToolBar(getString(R.string.home));
+        setupToolBar(getString(R.string.home).toUpperCase());
         setupNavigationView();
         setupTab();
         if (true) {

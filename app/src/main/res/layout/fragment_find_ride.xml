@@ -31,23 +31,35 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:layout_weight="50"
-                android:background="@drawable/round_cornor"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="6dp"
-                    android:src="@drawable/ic_marker" />
-
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:ellipsize="end"
-                    android:hint="@string/from"
-                    android:maxLines="1" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="6dp"
+                        android:src="@drawable/ic_marker" />
+
+                    <EditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:ellipsize="end"
+                        android:hint="@string/from"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -56,23 +68,33 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:layout_weight="50"
-                android:background="@drawable/round_cornor"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="6dp"
-                    android:src="@drawable/ic_marker" />
-
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:ellipsize="end"
-                    android:hint="@string/to"
-                    android:maxLines="1" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="6dp"
+                        android:src="@drawable/ic_marker" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:ellipsize="end"
+                        android:hint="@string/to"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
             </LinearLayout>
         </LinearLayout>
 
@@ -81,24 +103,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:background="@drawable/round_cornor"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="6dp"
-                android:src="@drawable/ic_calender" />
-
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:ellipsize="end"
-                android:enabled="false"
-                android:hint="@string/select_a_date"
-                android:maxLines="1" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="6dp"
+                    android:src="@drawable/ic_calender" />
+
+                <EditText
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:id="@+id/selectDateEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:ellipsize="end"
+                    android:hint="@string/select_a_date"
+                    android:maxLines="1" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
+
         </LinearLayout>
 
         <Button
