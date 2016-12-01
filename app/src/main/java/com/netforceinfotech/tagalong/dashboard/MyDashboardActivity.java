@@ -30,7 +30,7 @@ public class MyDashboardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(app_name);
+        getSupportActionBar().setTitle(app_name.toUpperCase());
 
 
     }
@@ -44,6 +44,11 @@ public class MyDashboardActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+                return true;
+
             case R.id.itemChat:
                 intent = new Intent(context, MyChatActivity.class);
                 startActivity(intent);

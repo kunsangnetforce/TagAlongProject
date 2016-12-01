@@ -47,6 +47,7 @@ public class OfferFragment extends Fragment implements View.OnClickListener {
                 intent = new Intent(context, RideDetailActivity.class);
                 bundle = new Bundle();
                 bundle.putBoolean("oneway", true);
+                intent.putExtras(bundle);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
 
@@ -55,6 +56,8 @@ public class OfferFragment extends Fragment implements View.OnClickListener {
                 intent = new Intent(context, RideDetailActivity.class);
                 bundle = new Bundle();
                 bundle.putBoolean("oneway", false);
+                intent.putExtras(bundle);
+
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
                 break;

@@ -10,13 +10,14 @@
     <string name="FacebookLogin">LOGIN WITH FACEBOOK</string>
     <string name="BarCheck">|</string>
     <string name="createnewAccount">CREATING NEW ACCOUNT</string>
-    <string name="cantrememberpasswrd">Can\'t remember your password ? Enter your Email id. we will send you password</string>
+    <string name="cantrememberpasswrd">Can\'t remember your password ?</string>
     <string name="sendButton">Send</string>
     <string name="chatItem">Chat</string>
     <string name="NotiItem">Notification</string>
     <string name="home">Home</string>
-    <string name="my_profile">My profile</string>
+    <string name="my_profile">My Profile</string>
     <string name="my_car">My car</string>
+    <string name="facebook_app_id">1873956666169545</string>
     <string name="my_booking">My booking</string>
     <string name="my_dashboard">My dashboard</string>
     <string name="find_ride">Find a rind</string>
@@ -34,9 +35,9 @@
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="select_a_date">Select a Date</string>
-    <string name="how_you_want_to_offer_this_ride">How you want to offer this ride?</string>
-    <string name="one_way_trip">One way trip</string>
-    <string name="round_trip">Round trip</string>
+    <string name="how_you_want_to_offer_this_ride">How do you want to offer this ride?</string>
+    <string name="one_way_trip">One way ride</string>
+    <string name="round_trip">Round ride</string>
     <string name="rideTotal">6</string>
     <string name="RidesOffersTextView">Rides Offer</string>
     <string name="ProfileName">JON DOE</string>
@@ -73,13 +74,13 @@
     <string name="enter_price">Enter price</string>
     <string name="total_distance">Total distance :</string>
     <string name="suggested_prince">Suggested prince :</string>
-    <string name="next">Next</string>
+    <string name="next">NEXT</string>
     <string name="return_date">Return date</string>
     <string name="return_time">Return time</string>
     <string name="add_return_stop">Add return stop over</string>
-    <string name="car_detail">Car details</string>
+    <string name="car_detail">Car Details</string>
     <string name="select_car">Select your car</string>
-    <string name="seat_available">Seat available</string>
+    <string name="seat_available">Seat Available</string>
     <string name="luggage_space">Luggage Space</string>
     <string name="small">Small</string>
     <string name="medium">Medium</string>
@@ -88,7 +89,7 @@
     <string name="i_will_leave">I will leave</string>
     <string name="in_15_min_window">In 15 min window</string>
     <string name="i_hereby_certified_that_i_hold_a_driving_license_and_a_valid_car_isurance">I hereby certified that I hold a driving license and a valid car isurance.</string>
-    <string name="publish">Publish</string>
+    <string name="publish">PUBLISH THIS RIDE</string>
     <string name="submit">Submit</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="dob">DOB</string>
@@ -96,8 +97,8 @@
     <string name="address">Address</string>
     <string name="language">Language</string>
     <string name="quick_description">Quick description</string>
-    <string name="preference">Preference</string>
-    <string name="save">Save</string>
+    <string name="preference">Preferences</string>
+    <string name="save">SAVE</string>
     <string name="saved_cards">Saved Cards</string>
     <string name="new_cards">New Cards</string>
     <string name="pay">PAY</string>
@@ -142,4 +143,6 @@
     <string name="seat_required">Seat Required</string>
     <string name="proceed_to_check_out">Proceed to check out</string>
     <string name="bookingseat">BOOKING SEAT</string>
+    <string name="suggested_price">Suggested Price</string>
+    <string name="user_dob">18-04-1990</string>
 </resources>

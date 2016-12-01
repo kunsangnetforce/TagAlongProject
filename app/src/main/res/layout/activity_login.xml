@@ -194,7 +194,7 @@
 
 
         <LinearLayout
-           android:clickable="true"
+            android:id="@+id/facebookLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/facebookbgcolor_rounded"
@@ -202,7 +202,6 @@
             android:padding="5dp">
 
             <ImageView
-                android:clickable="true"
                 android:layout_marginLeft="20dp"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -210,7 +209,6 @@
                 android:src="@drawable/fblogo" />
 
             <TextView
-                android:clickable="true"
                 android:background="@color/white"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
@@ -219,7 +217,6 @@
 
 
             <TextView
-                android:clickable="true"
                 android:layout_marginLeft="10dp"
                 android:textStyle="bold"
                 android:layout_gravity="center_vertical"
@@ -228,7 +225,19 @@
                 android:text="@string/FacebookLogin"
                 android:textColor="@color/white" />
 
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button_fb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp" />
+
+
         </LinearLayout>
+
+
 
 
     </LinearLayout>

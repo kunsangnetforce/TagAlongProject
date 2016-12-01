@@ -25,7 +25,7 @@ public class CantFindRideActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(s);
+        getSupportActionBar().setTitle(s.toUpperCase());
     }
 
     @Override
