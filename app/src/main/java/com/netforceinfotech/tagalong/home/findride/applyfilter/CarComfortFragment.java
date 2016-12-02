@@ -17,6 +17,8 @@ public class CarComfortFragment extends Fragment {
 
     public CarComfortFragment() {
         // Required empty public constructor
+
+//        Lasso tashi
     }
 
 
