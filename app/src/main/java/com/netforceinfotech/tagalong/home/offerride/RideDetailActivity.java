@@ -36,6 +36,8 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
     private Intent intent;
     private Bundle bundle;
     private EditText departureDateEditText, departureTimeEditText, returnDateEditText, returnTimeEditText;
+    EditText toEditText,fromEditText,priceEditText,stopoverEditText,returnstopoverEditText;
+
 
 
     @Override
@@ -79,6 +81,10 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
         returnDateEditText.setOnClickListener(this);
         returnTimeEditText = (EditText) findViewById(R.id.returnTimeEditText);
         returnTimeEditText.setOnClickListener(this);
+        fromEditText = (EditText) findViewById(R.id.fromEditText);
+        toEditText = (EditText) findViewById(R.id.toEditText);
+        stopoverEditText = (EditText) findViewById(R.id.stopoverEditText);
+        returnstopoverEditText = (EditText) findViewById(R.id.returnStopOverEditText);
 
 
     }

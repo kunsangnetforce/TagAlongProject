@@ -21,6 +21,9 @@ import com.shehabic.droppy.DroppyClickCallbackInterface;
 import com.shehabic.droppy.DroppyMenuPopup;
 import com.shehabic.droppy.animations.DroppyFadeInAnimation;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar toolbar;
@@ -151,17 +154,101 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE || activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
 
 
-                 // Sign up validation goes in here...
+              if(!user_name.getText().toString().isEmpty()){
+                  if(isValidName(user_name.getText().toString().trim())){
 
-                showMessage("Sign Up Validation ....");
+                      if(!user_email.getText().toString().isEmpty()){
+                          if(isValidEmail(user_email.getText().toString().trim())){
 
-            }
+                              if(!user_password.getText().toString().isEmpty()){
+                                  if(isValidPassword(user_password.getText().toString().trim())){
+                                      if(!user_repassword.getText().toString().isEmpty()){
+
+
+                                          if(user_password.getText().toString().trim().equals(user_repassword.getText().toString().trim())){
+
+                                              showMessage("Validation Successful...");
+
+                                          }else {
+                                              user_password.getText().clear();
+                                              user_repassword.getText().clear();
+                                              user_password.setFocusable(true);
+                                              showMessage("Password didn't match");
+                                          }
+
+                                      }else {
+
+                                          showMessage("Enter Confirmation Password");
+                                      }
+
+
+                                  }else{
+                                      user_password.getText().clear();
+                                      user_repassword.getText().clear();
+                                      user_password.setFocusable(true);
+                                      showMessage("Password should have at least 6 characters");
+                                  }
+
+
+                              }else {
+
+                                  showMessage("Enter Password");
+                              }
+
+                          }else {
+                              showMessage("Enter a valid Email Adress");
+                          }
+
+
+
+                      }else {
+                          showMessage("Enter Email Address");
+                      }
+
+                  }else {
+                      showMessage("User Name should have at least 5 characters");
+                  }
+
+              } else
+              {
+                  showMessage("Enter User Name");
+
+              }
+
+
+
+
+            } // end of the second if statement...
+
 
         } else {
 
             // First Else...
             Toast.makeText(getApplicationContext(), "No Internet", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+    private boolean isValidPassword(String pass) {
+        if (pass != null && pass.length() > 6) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isValidName(String name){
+
+        if(name!=null && name.length()>5){
+            return true;
+        }
+        return false;
     }
 
     private void showMessage(String s) {

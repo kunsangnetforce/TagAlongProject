@@ -46,7 +46,8 @@
                         android:src="@drawable/ic_marker" />
 
                     <EditText
-
+                        android:textColor="@color/grey"
+                        android:textColorHint="@color/grey"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
@@ -83,6 +84,8 @@
                         android:src="@drawable/ic_marker" />
 
                     <EditText
+                        android:textColor="@color/grey"
+                        android:textColorHint="@color/grey"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
@@ -118,6 +121,8 @@
                     android:src="@drawable/ic_calender" />
 
                 <EditText
+                    android:textColor="@color/grey"
+                    android:textColorHint="@color/grey"
                     android:clickable="true"
                     android:focusable="false"
                     android:id="@+id/selectDateEditText"
