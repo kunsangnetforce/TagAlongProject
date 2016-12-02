@@ -43,7 +43,7 @@ public class ApplyFilterActivity extends AppCompatActivity implements CompoundBu
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(s);
+        getSupportActionBar().setTitle(s.toUpperCase());
     }
 
     @Override
