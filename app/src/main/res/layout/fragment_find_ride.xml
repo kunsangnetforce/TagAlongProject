@@ -46,14 +46,17 @@
                         android:src="@drawable/ic_marker" />
 
                     <EditText
-                        android:textColor="@color/grey"
-                        android:textColorHint="@color/grey"
+                        android:focusable="false"
+                        android:id="@+id/et_from"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
+                        android:clickable="true"
                         android:ellipsize="end"
                         android:hint="@string/from"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textColor="@color/grey"
+                        android:textColorHint="@color/grey" />
                 </LinearLayout>
 
                 <View
@@ -84,14 +87,14 @@
                         android:src="@drawable/ic_marker" />
 
                     <EditText
-                        android:textColor="@color/grey"
-                        android:textColorHint="@color/grey"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
                         android:ellipsize="end"
                         android:hint="@string/to"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textColor="@color/grey"
+                        android:textColorHint="@color/grey" />
                 </LinearLayout>
 
                 <View
@@ -121,17 +124,17 @@
                     android:src="@drawable/ic_calender" />
 
                 <EditText
-                    android:textColor="@color/grey"
-                    android:textColorHint="@color/grey"
-                    android:clickable="true"
-                    android:focusable="false"
                     android:id="@+id/selectDateEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
+                    android:clickable="true"
                     android:ellipsize="end"
+                    android:focusable="false"
                     android:hint="@string/select_a_date"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:textColor="@color/grey"
+                    android:textColorHint="@color/grey" />
 
             </LinearLayout>
 

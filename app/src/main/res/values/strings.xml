@@ -158,4 +158,5 @@
     <string name="allride">All Ride</string>
     <string name="ladyonly">Lady Only</string>
     <string name="shoppingride">Shopping Rides</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
