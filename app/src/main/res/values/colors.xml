@@ -13,7 +13,8 @@
     <color name="darkred">#d43b3d</color>
     <color name="toolbarTextColor">#ffffff</color>
     <color name="transultion">#a2000000</color>
-    <color name="grey">#ac969595</color>
+    <color name="grey">#9E9E9E</color>
+
     <color name="colorBlack">#000000</color>
     <color name="colorTextPrimaryDark">#595959</color>
     <color name="lightgrey">#e2e2e2</color>

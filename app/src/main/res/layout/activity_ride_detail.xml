@@ -83,6 +83,7 @@
                                 android:src="@drawable/ic_marker" />
 
                             <EditText
+                                android:id="@+id/fromEditText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"
@@ -121,6 +122,7 @@
                                 android:src="@drawable/ic_marker" />
 
                             <EditText
+                                android:id="@+id/toEditText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@android:color/transparent"
@@ -157,6 +159,7 @@
                             android:src="@drawable/ic_addstopover" />
 
                         <EditText
+                            android:id="@+id/stopoverEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="6dp"
@@ -277,6 +280,7 @@
                                 android:src="@drawable/ic_addstopover" />
 
                             <EditText
+                                android:id="@+id/returnStopOverEditText"
                                 android:focusable="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -392,6 +396,7 @@
                             android:src="@drawable/ic_dollar" />
 
                         <EditText
+                            android:id="@+id/priceEditText"
                             android:textColor="@color/grey"
                             android:inputType="number"
                             android:layout_width="match_parent"
