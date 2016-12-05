@@ -10,7 +10,7 @@ import com.netforceinfotech.tagalong.home.HomeActivity;
 import com.netforceinfotech.tagalong.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
-
+//comment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
