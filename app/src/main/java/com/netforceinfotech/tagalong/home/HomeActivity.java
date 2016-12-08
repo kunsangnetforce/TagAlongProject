@@ -24,6 +24,7 @@ import com.netforceinfotech.tagalong.dashboard.MyDashboardActivity;
 import com.netforceinfotech.tagalong.driverProfile.DriverProfile;
 import com.netforceinfotech.tagalong.home.findride.CantFindRideActivity;
 import com.netforceinfotech.tagalong.myCars.MyCarActivity;
+import com.netforceinfotech.tagalong.myCars.carlist.CarListActivity;
 import com.netforceinfotech.tagalong.myprofile.MyProfileActivity;
 
 import java.util.ArrayList;
@@ -192,7 +193,7 @@ public class HomeActivity extends AppCompatActivity {
                         overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;
                     case 1:
-                        intent = new Intent(context, MyCarActivity.class);
+                        intent = new Intent(context, CarListActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;

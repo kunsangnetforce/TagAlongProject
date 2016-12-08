@@ -5,14 +5,17 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.chat.MyChatActivity;
+import com.netforceinfotech.tagalong.myCars.registercar.RegisterNewCar;
 
 
 public class MyCarActivity extends AppCompatActivity implements View.OnClickListener{
@@ -21,6 +24,7 @@ public class MyCarActivity extends AppCompatActivity implements View.OnClickList
     private Intent intent;
     private Button addCarButton;
     Context context;
+    TextView seatTotal;
 
 
     @Override
@@ -36,6 +40,18 @@ public class MyCarActivity extends AppCompatActivity implements View.OnClickList
     private void initView() {
         addCarButton = (Button) findViewById(R.id.addNewCarButton);
         addCarButton.setOnClickListener(this);
+
+        seatTotal = (TextView) findViewById(R.id.carSeatTotalTextView);
+
+        Intent intent = getIntent();
+
+        String id=intent.getStringExtra("CARID");
+
+        Log.d("CAR_ID",id);
+
+
+
+
 
     }
 

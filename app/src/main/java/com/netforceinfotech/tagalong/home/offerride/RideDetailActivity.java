@@ -7,25 +7,40 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.netforceinfotech.tagalong.R;
+import com.netforceinfotech.tagalong.home.offerride.stopover.StopOverAdapter;
+import com.netforceinfotech.tagalong.home.offerride.stopover.StopOverData;
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class RideDetailActivity extends AppCompatActivity implements View.OnClickListener {
-
+    String TAG = "google_result";
+    private static final int PLACE_FROM = 101;
+    private static final int PLACE_TO = 105;
+    private static final int STOP_OVER_ADD = 100;
     boolean oneway = true;
     LinearLayout linearLayoutRoundTrip;
     private int mYear, mMonth, mDay, mHour, mMinute;
@@ -36,8 +51,13 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
     private Intent intent;
     private Bundle bundle;
     private EditText departureDateEditText, departureTimeEditText, returnDateEditText, returnTimeEditText;
-    EditText toEditText,fromEditText,priceEditText,stopoverEditText,returnstopoverEditText;
+    EditText toEditText, fromEditText, priceEditText, stopoverEditText, returnstopoverEditText;
 
+    ImageView stopoveroneImageView;
+    RecyclerView stopOverRecycler;
+    ArrayList<StopOverData> stopOverDatas = new ArrayList<>();
+
+    StopOverAdapter stopOverAdapter;
 
 
     @Override
@@ -60,10 +80,29 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
 
         setupToolbar(rideDetail);
 
+        setUpRecycler();
+
+
+    }
+
+    private void setUpRecycler() {
+
+        stopOverRecycler = (RecyclerView) findViewById(R.id.stopOverRecycler);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        stopOverAdapter = new StopOverAdapter(this, stopOverDatas);
+        stopOverRecycler.setLayoutManager(linearLayoutManager);
+        stopOverRecycler.setAdapter(stopOverAdapter);
 
     }
 
     private void initView() {
+
+
+        stopoverEditText = (EditText) findViewById(R.id.stopoverEditText);
+        stopoverEditText.setOnClickListener(this);
+        returnstopoverEditText = (EditText) findViewById(R.id.returnStopOverEditText);
+        stopoveroneImageView = (ImageView) findViewById(R.id.imageViewStopoverOne);
+        stopoveroneImageView.setOnClickListener(this);
         textViewTitle = (TextView) findViewById(R.id.textViewTitle);
         linearLayoutRoundTrip = (LinearLayout) findViewById(R.id.linearLayoutRoundTrip);
         if (oneway) {
@@ -82,9 +121,9 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
         returnTimeEditText = (EditText) findViewById(R.id.returnTimeEditText);
         returnTimeEditText.setOnClickListener(this);
         fromEditText = (EditText) findViewById(R.id.fromEditText);
+        fromEditText.setOnClickListener(this);
         toEditText = (EditText) findViewById(R.id.toEditText);
-        stopoverEditText = (EditText) findViewById(R.id.stopoverEditText);
-        returnstopoverEditText = (EditText) findViewById(R.id.returnStopOverEditText);
+        toEditText.setOnClickListener(this);
 
 
     }
@@ -105,7 +144,6 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
             case android.R.id.home:
                 finish();
                 overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
-
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -115,6 +153,55 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.stopoverEditText:
+                try {
+                    Intent intent =
+                            new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                                    .build(this);
+                    startActivityForResult(intent, STOP_OVER_ADD);
+
+                } catch (GooglePlayServicesRepairableException e) {
+
+                    Log.d("Error...", String.valueOf(e));
+                } catch (GooglePlayServicesNotAvailableException e) {
+                }
+                break;
+
+            case R.id.imageViewStopoverOne:
+
+                showMessage("imageViewStopoverOne CAlled");
+
+
+                AddStopOverDatas();
+
+                break;
+            case R.id.toEditText:
+                try {
+                    Intent intent =
+                            new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                                    .build(this);
+                    startActivityForResult(intent, PLACE_TO);
+
+                } catch (GooglePlayServicesRepairableException e) {
+
+                    Log.d("Error...", String.valueOf(e));
+                } catch (GooglePlayServicesNotAvailableException e) {
+                }
+                break;
+            case R.id.fromEditText:
+                try {
+                    Intent intent =
+                            new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                                    .build(this);
+                    startActivityForResult(intent, PLACE_FROM);
+                } catch (GooglePlayServicesRepairableException e) {
+                    // TODO: Handle the error.
+                    Log.d("Errorrr", String.valueOf(e));
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    // TODO: Handle the error.
+                }
+                break;
+
             case R.id.textViewNext:
                 intent = new Intent(context, CarDetailActivity.class);
                 bundle = new Bundle();
@@ -139,6 +226,80 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    private void AddStopOverDatas() {
+
+        stopOverDatas.add(new StopOverData(stopoverEditText.getText().toString()));
+        stopOverAdapter.notifyDataSetChanged();
+        stopoverEditText.getText().clear();
+
+
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_FROM) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlaceAutocomplete.getPlace(this, data);
+                String plaze = place.getName().toString();
+                Log.i(TAG, "Place: " + place.getName());
+                showMessage("The Place name is" + place.getName());
+                fromEditText.setText(plaze);
+
+            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+                Status status = PlaceAutocomplete.getStatus(this, data);
+                // TODO: Handle the error.
+                Log.i(TAG, status.getStatusMessage());
+                Log.i(TAG, status.toString());
+
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+
+
+        }
+        if (requestCode == PLACE_TO) {
+
+            if (resultCode == RESULT_OK) {
+                Place place = PlaceAutocomplete.getPlace(this, data);
+                String plaze = place.getName().toString();
+
+                toEditText.setText(plaze);
+
+            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+                Status status = PlaceAutocomplete.getStatus(this, data);
+                // TODO: Handle the error.
+                Log.i(TAG, status.getStatusMessage());
+                Log.i(TAG, status.toString());
+
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+        }
+        if (requestCode == STOP_OVER_ADD) {
+
+            if (resultCode == RESULT_OK) {
+                Place place = PlaceAutocomplete.getPlace(this, data);
+                String plaze = place.getName().toString();
+
+                stopoverEditText.setText(plaze);
+
+                return;
+            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+                Status status = PlaceAutocomplete.getStatus(this, data);
+                // TODO: Handle the error.
+                Log.i(TAG, status.getStatusMessage());
+                Log.i(TAG, status.toString());
+
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+
+        }
+
+
+    }
+
     private void showReturnTime() {
 
         // Get Current Time
@@ -147,7 +308,7 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
         mMinute = c.get(Calendar.MINUTE);
 
         // Launch Time Picker Dialog
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,R.style.DialogTheme,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.DialogTheme,
                 new TimePickerDialog.OnTimeSetListener() {
 
                     @Override
@@ -174,7 +335,7 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.DialogTheme,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                 new DatePickerDialog.OnDateSetListener() {
 
                     @Override
@@ -199,7 +360,7 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
         mMinute = c.get(Calendar.MINUTE);
 
         // Launch Time Picker Dialog
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,R.style.DialogTheme,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.DialogTheme,
                 new TimePickerDialog.OnTimeSetListener() {
 
                     @Override
@@ -213,9 +374,6 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-
-
-
     private void showDepartDate() {
 
         // Get Current Date
@@ -225,7 +383,7 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.DialogTheme,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                 new DatePickerDialog.OnDateSetListener() {
 
                     @Override

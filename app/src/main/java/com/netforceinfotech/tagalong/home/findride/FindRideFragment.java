@@ -6,13 +6,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.BitmapEncoder;
@@ -23,7 +23,6 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.home.findride.ride_available.RidesActivity;
-import com.netforceinfotech.tagalong.home.offerride.RideDetailActivity;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.text.ParseException;
@@ -41,10 +40,11 @@ public class FindRideFragment extends Fragment implements View.OnClickListener, 
 
 
     String TAG = "google_result";
-    private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 101;
+    private static final int PLACE_FROM = 101;
+    private static final int PLACE_TO = 105;
     ImageView imageFindRide;
     Context context;
-    private EditText selectDateEditText, editTextFrom;
+    private EditText selectDateEditText, editTextFrom ,editTextTo;
 
 
     public FindRideFragment() {
@@ -64,6 +64,9 @@ public class FindRideFragment extends Fragment implements View.OnClickListener, 
     }
 
     private void initView(View view) {
+        editTextTo= (EditText) view.findViewById(R.id.et_to);
+        editTextTo.setOnClickListener(this);
+
         editTextFrom = (EditText) view.findViewById(R.id.et_from);
         editTextFrom.setOnClickListener(this);
         imageFindRide = (ImageView) view.findViewById(R.id.imageFindRide);
@@ -83,13 +86,28 @@ public class FindRideFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.et_to:
+                try{
+                    Intent intent =
+                            new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                                    .build(getActivity());
+                    startActivityForResult(intent, PLACE_TO);
+
+                }catch(GooglePlayServicesRepairableException e){
+
+                    Log.d("Error...", String.valueOf(e));
+                }
+
+                catch (GooglePlayServicesNotAvailableException e){}
+                break;
+
             case R.id.et_from:
 
                 try {
                     Intent intent =
                             new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
                                     .build(getActivity());
-                    startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
+                    startActivityForResult(intent, PLACE_FROM);
                 } catch (GooglePlayServicesRepairableException e) {
                     // TODO: Handle the error.
                     Log.d("Errorrr", String.valueOf(e));
@@ -98,6 +116,7 @@ public class FindRideFragment extends Fragment implements View.OnClickListener, 
                 }
                 break;
             case R.id.buttonSearch:
+
                 Intent intent = new Intent(context, RidesActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
@@ -105,6 +124,7 @@ public class FindRideFragment extends Fragment implements View.OnClickListener, 
                 break;
             case R.id.selectDateEditText:
                 showSelectDatePopup();
+                break;
         }
     }
 
@@ -138,18 +158,41 @@ public class FindRideFragment extends Fragment implements View.OnClickListener, 
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+        if (requestCode == PLACE_FROM) {
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(getActivity(), data);
+                String plaze= place.getName().toString();
                 Log.i(TAG, "Place: " + place.getName());
+                showMessage("The Place name is"+place.getName());
+                editTextFrom.setText(plaze);
+
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 Status status = PlaceAutocomplete.getStatus(getActivity(), data);
                 // TODO: Handle the error.
                 Log.i(TAG, status.getStatusMessage());
+                Log.i(TAG, status.toString());
 
             } else if (resultCode == RESULT_CANCELED) {
                 // The user canceled the operation.
             }
+        } // ends here...
+
+        if(requestCode==PLACE_TO){
+
+            if(resultCode==RESULT_OK){
+                Place place=PlaceAutocomplete.getPlace(getActivity(),data);
+                String plaze= place.getName().toString();
+                editTextTo.setText(plaze);
+            }else if(resultCode==PlaceAutocomplete.RESULT_ERROR){
+                Status status = PlaceAutocomplete.getStatus(getActivity(),data);
+                Log.d("StatusInfo","StatusMessage="+status.getStatusMessage()+"Status="+status.getStatus());
+            }
         }
+
+
+    }
+
+    private void showMessage(String s) {
+        Toast.makeText(context,s, Toast.LENGTH_SHORT).show();
     }
 }

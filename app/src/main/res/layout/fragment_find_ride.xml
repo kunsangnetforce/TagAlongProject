@@ -87,6 +87,9 @@
                         android:src="@drawable/ic_marker" />
 
                     <EditText
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:id="@+id/et_to"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
