@@ -1,4 +1,4 @@
-package com.netforceinfotech.tagalong.myCars;
+package com.netforceinfotech.tagalong.myCars.registercar;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +20,7 @@ public class RegisterNewCar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_new_car);
-        setupToolbar("REGISTER NEW CAR");
+        setupToolbar(getString(R.string.registercar));
 
         initView();
 
@@ -72,7 +72,7 @@ public class RegisterNewCar extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(s);
+        getSupportActionBar().setTitle(s.toUpperCase());
 
     }
 }

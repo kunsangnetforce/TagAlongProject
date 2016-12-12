@@ -57,12 +57,14 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/linearLayoutCar"
+                    android:clickable="true"
+                    android:id="@+id/linearLayoutCarList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <RelativeLayout
+                        android:id="@+id/relativeCar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -76,6 +78,7 @@
                             android:src="@drawable/ic_car" />
 
                         <TextView
+                            android:id="@+id/textViewCar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"

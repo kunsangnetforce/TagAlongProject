@@ -159,4 +159,10 @@
     <string name="ladyonly">Lady Only</string>
     <string name="shoppingride">Shopping Rides</string>
     <string name="title_activity_maps">Map</string>
+    <string name="audi_q7">Audi Q7</string>
+    <string name="_4">Seat 4</string>
+    <string name="comfort">Comfort</string>
+    <string name="mycars">My Cars</string>
+    <string name="add_new_car">Add New Car</string>
+    <string name="registercar">Register New Car</string>
 </resources>
