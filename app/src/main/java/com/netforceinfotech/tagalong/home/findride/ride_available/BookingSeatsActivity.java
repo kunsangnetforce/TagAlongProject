@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.netforceinfotech.tagalong.R;
@@ -20,6 +22,7 @@ public class BookingSeatsActivity extends AppCompatActivity implements View.OnCl
     private Intent intent;
     Context context;
     Toolbar toolbar;
+    private TextView textViewMinus, textViewPlus, textViewRequiredSeat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,11 @@ public class BookingSeatsActivity extends AppCompatActivity implements View.OnCl
 
     private void initView() {
         findViewById(R.id.linearLayoutProceedPayment).setOnClickListener(this);
+        textViewRequiredSeat = (TextView) findViewById(R.id.textViewRequiredSeat);
+        textViewMinus = (TextView) findViewById(R.id.textViewMinus);
+        textViewPlus = (TextView) findViewById(R.id.textViewPlus);
+        textViewPlus.setOnClickListener(this);
+        textViewMinus.setOnClickListener(this);
     }
 
     @Override
@@ -83,6 +91,40 @@ public class BookingSeatsActivity extends AppCompatActivity implements View.OnCl
                 intent = new Intent(context, PaymentModeActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.textViewMinus:
+                PerformSubtraction();
+                break;
+            case R.id.textViewPlus:
+                PerformAddition();
+                break;
         }
+    }
+
+    private void PerformAddition() {
+
+        showMessage("Do validation if they exceed the total seats..");
+        int in = Integer.parseInt(textViewRequiredSeat.getText().toString());
+        in++;
+        String value = String.valueOf(in);
+        textViewRequiredSeat.setText(value);
+
+
+
+    }
+
+    private void PerformSubtraction() {
+
+        int in = Integer.parseInt(textViewRequiredSeat.getText().toString());
+        if (in > 1) {
+
+            in--;
+            String value = String.valueOf(in);
+
+            textViewRequiredSeat.setText(value);
+        } else {
+
+            showMessage("Please select at least one seat");
+        }
+
     }
 }

@@ -5,31 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:focusableInTouchMode="true"
     tools:context="com.netforceinfotech.tagalong.myCars.registercar.RegisterNewCar">
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <include
             android:id="@+id/toolbar"
             layout="@layout/app_bar" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
         <LinearLayout
-
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -89,7 +80,6 @@
                         android:hint="@string/makecarEditText" />
 
                     <ImageView
-
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_alignParentRight="true"
@@ -304,6 +294,5 @@
         </LinearLayout>
 
 
-    </ScrollView>
 
 </LinearLayout>

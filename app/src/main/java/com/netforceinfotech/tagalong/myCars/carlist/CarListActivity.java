@@ -119,6 +119,7 @@ public class CarListActivity extends AppCompatActivity implements View.OnClickLi
 
             intent = new Intent(CarListActivity.this,RegisterNewCar.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.enter, R.anim.exit);
             return;
         }
 
