@@ -3,8 +3,8 @@ package com.netforceinfotech.tagalong.login;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,17 +12,30 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.netforceinfotech.tagalong.R;
-import com.netforceinfotech.tagalong.login.Validation.Validation;
 import com.shehabic.droppy.DroppyClickCallbackInterface;
 import com.shehabic.droppy.DroppyMenuPopup;
 import com.shehabic.droppy.animations.DroppyFadeInAnimation;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,6 +44,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private Button signupbutton;
     private Context context;
     private TextView user_prefered_language;
+    LinearLayout ll_preferd_lang;
+    RelativeLayout rl_preferd_lang;
     private ImageView userlangdropdownlist;
 
 
@@ -52,10 +67,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         user_password = (EditText) findViewById(R.id.userPasswordEditText);
         user_repassword = (EditText) findViewById(R.id.userRepasswordEditText);
         user_prefered_language = (TextView) findViewById(R.id.userPreferedLangTextView);
+        ll_preferd_lang=(LinearLayout)findViewById(R.id.ll_preferd_lang);
+        rl_preferd_lang=(RelativeLayout) findViewById(R.id.rl_preferd_lang);
         userlangdropdownlist= (ImageView) findViewById(R.id.langDropDownImageView);
         userlangdropdownlist.setOnClickListener(this);
         signupbutton = (Button) findViewById(R.id.signupButton);
         signupbutton.setOnClickListener(this);
+        ll_preferd_lang.setOnClickListener(this);
+        rl_preferd_lang.setOnClickListener(this);
+        user_prefered_language.setOnClickListener(this);
 
     }
 
@@ -89,9 +109,21 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             check_validation();
 
         }
-        if(v.getId()==R.id.langDropDownImageView){
+        if(v.getId()==R.id.rl_preferd_lang)
+        {
             showLangOptions();
-
+        }
+//        if(v.getId()==R.id.langDropDownImageView){
+//            showLangOptions();
+//
+//        }
+        if(v.getId()==R.id.ll_preferd_lang)
+        {
+            showLangOptions();
+        }
+        if(v.getId()==R.id.userPreferedLangTextView)
+        {
+            showLangOptions();
         }
     }
 
@@ -106,22 +138,21 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
                         switch (id){
 
-                            case R.id.dd1:
-                                Toast.makeText(getApplicationContext(),"Chat ddl1 clicked",Toast.LENGTH_LONG).show();
+                            case R.id.english:
+                                user_prefered_language.setText(R.string.lang_eng);
 
                                 break;
-                            case R.id.dd2:
-                                Toast.makeText(getApplicationContext(),"Chat ddl2 clicked",Toast.LENGTH_LONG).show();
+                            case R.id.hindi:
+                                user_prefered_language.setText(R.string.lang_hindi);
+
 
                                 break;
-                            case R.id.dd3:
-                                Toast.makeText(getApplicationContext(),"Chat ddl3 clicked",Toast.LENGTH_LONG).show();
+                            case R.id.tibetan:
+                                user_prefered_language.setText(R.string.lang_tib);
+
 
                                 break;
-                            case R.id.dd4:
-                                Toast.makeText(getApplicationContext(),"Chat ddl4 clicked",Toast.LENGTH_LONG).show();
 
-                                break;
 
                         }
 
@@ -166,6 +197,17 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
                                           if(user_password.getText().toString().trim().equals(user_repassword.getText().toString().trim())){
+                                              call_signup_webservice(context);
+
+
+
+
+
+
+
+
+
+
 
                                               showMessage("Validation Successful...");
 
@@ -228,6 +270,48 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    private void call_signup_webservice(Context context) {
+        setupSelfSSLCert();
+
+
+
+        JsonObject js=new JsonObject();
+        js.addProperty("type", "register");
+        js.addProperty("vFirstName",user_name.getText().toString().trim());
+        js.addProperty("vLastName", "test");
+        js.addProperty("vEmail",user_email.getText().toString().trim());
+        js.addProperty("vPassword", user_password.getText().toString().trim());
+
+        js.addProperty("vLanguageCode", "eng");
+        Log.e("js",js.toString());
+
+String Webservice_signup_url=getResources().getString(R.string.webservice_api_url);
+        Log.e("Webservice_signup_url",Webservice_signup_url);
+        Ion.with(context)
+                .load(Webservice_signup_url)
+                .setJsonObjectBody(js)
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+
+
+                        if(result!=null)
+                        {
+                            Log.e("result",result.toString());
+                        }
+                        else {
+                            Log.e("result_null","result_null");
+                        }
+                        // do stuff with the result or error
+                    }
+                });
+
+
+
+
+    }
+
     private boolean isValidEmail(String email) {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -254,6 +338,72 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private void showMessage(String s) {
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
+
+
+    private static class Trust implements X509TrustManager {
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void checkClientTrusted(final X509Certificate[] chain, final String authType)
+                throws CertificateException {
+
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void checkServerTrusted(final X509Certificate[] chain, final String authType)
+                throws CertificateException {
+
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+
+    }
+
+    public void setupSelfSSLCert() {
+        final Trust trust = new Trust();
+        final TrustManager[] trustmanagers = new TrustManager[]{trust};
+        SSLContext sslContext;
+        try {
+            sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, trustmanagers, new SecureRandom());
+            Ion.getInstance(context, "rest").getHttpClient().getSSLSocketMiddleware().setTrustManagers(trustmanagers);
+            Ion.getInstance(context, "rest").getHttpClient().getSSLSocketMiddleware().setSSLContext(sslContext);
+        } catch (final NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (final KeyManagementException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

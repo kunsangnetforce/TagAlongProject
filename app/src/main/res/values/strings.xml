@@ -165,4 +165,8 @@
     <string name="mycars">My Cars</string>
     <string name="add_new_car">Add New Car</string>
     <string name="registercar">Register New Car</string>
+    <string name="lang_eng">English</string>
+    <string name="lang_hindi">Hindi</string>
+    <string name="lang_tib">Tibetan</string>
+    <string name="webservice_api_url">https://tag-along.net/webservice.php</string>
 </resources>
