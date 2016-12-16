@@ -8,6 +8,7 @@ public class RestopOverData {
 
     String place;
 
+
     public RestopOverData(String place) {
 
         this.place = place;

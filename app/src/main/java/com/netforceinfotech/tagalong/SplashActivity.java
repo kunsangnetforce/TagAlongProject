@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.netforceinfotech.tagalong.dashboard.MyDashboardActivity;
+import com.netforceinfotech.tagalong.googledistance.GoogleMapActivity;
 import com.netforceinfotech.tagalong.home.HomeActivity;
 import com.netforceinfotech.tagalong.login.LoginActivity;
 
@@ -21,7 +22,9 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void run() {
+
                 Intent i = new Intent(SplashActivity.this,HomeActivity.class);
+        //       Intent i = new Intent(SplashActivity.this,GoogleMapActivity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.enter, R.anim.exit);
                 finish();

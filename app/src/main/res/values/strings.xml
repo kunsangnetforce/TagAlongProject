@@ -165,4 +165,14 @@
     <string name="mycars">My Cars</string>
     <string name="add_new_car">Add New Car</string>
     <string name="registercar">Register New Car</string>
+    <string name="schedule">schedule</string>
+    <string name="detour">Detour</string>
+    <string name="cardetails">CarDetails</string>
+    <string name="carbrand">Brand : </string>
+    <string name="cartype">Type : </string>
+    <string name="plateno">Plate No :</string>
+    <string name="carcomfort">Comfort : </string>
+    <string name="bookthisride">Book this Ride</string>
+    <string name="rideDetail">ride Detail</string>
+    <string name="rideDetails">Ride Details</string>
 </resources>

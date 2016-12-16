@@ -484,6 +484,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/distanceTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -511,11 +512,13 @@
                         android:paddingTop="10dp">
 
                         <TextView
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/suggested_price" />
 
                         <TextView
+                            android:id="@+id/suggestedPriceTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="6dp"

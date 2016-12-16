@@ -56,7 +56,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, BookingSeatsActivity.class);
+                Intent intent = new Intent(context, RideAvailDetailActivity.class);
                 context.startActivity(intent);
             }
         });

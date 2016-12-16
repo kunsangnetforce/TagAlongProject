@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
@@ -26,6 +27,7 @@ import com.shehabic.droppy.animations.DroppyFadeInAnimation;
 
 import java.util.ArrayList;
 
+import static com.netforceinfotech.tagalong.R.id.fromLayout;
 import static com.netforceinfotech.tagalong.R.id.relativeCar;
 
 public class CarDetailActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
@@ -45,6 +47,11 @@ public class CarDetailActivity extends AppCompatActivity implements View.OnClick
     RadioButton radioButtonSmall, radioButtonMedium, radioButtonLarge;
     int selectedType = SMALL;
     private TextView textViewMinus, textViewPlus, inCredeCreTextView;
+    TextView textViewPublish;
+    ArrayList<LatLng> latLngs = new ArrayList<>();
+    RideDetailActivity ridContext;
+
+
 
 
     @Override
@@ -54,6 +61,7 @@ public class CarDetailActivity extends AppCompatActivity implements View.OnClick
         try {
             Bundle bundle = getIntent().getExtras();
             oneway = bundle.getBoolean("oneway");
+
 
         } catch (Exception ex) {
 
@@ -70,6 +78,8 @@ public class CarDetailActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initView() {
+        textViewPublish = (TextView) findViewById(R.id.textViewPublish);
+        textViewPublish.setOnClickListener(this);
         smallImageView = (ImageView) findViewById(R.id.smallImaveView);
         mediumImageView = (ImageView) findViewById(R.id.mediumImageView);
         largeImageView = (ImageView) findViewById(R.id.largeImageView);
@@ -171,8 +181,54 @@ public class CarDetailActivity extends AppCompatActivity implements View.OnClick
             case R.id.largeImageView:
                 radioButtonLarge.setChecked(true);
                 break;
+            case R.id.textViewPublish:
+                PrePareDataBeforePublish();
+                break;
 
         }
+
+    }
+
+    private void PrePareDataBeforePublish() {
+//        bundle.putString("fromEditText",fromEditText.getText().toString());
+//        bundle.putString("toEditText",toEditText.getText().toString());
+//        bundle.putString("departureDateEditText",departureDateEditText.getText().toString());
+//        bundle.putString("departureTimeEditText",departureTimeEditText.getText().toString());
+//        bundle.putString("PriceEditText",priceEditText.getText().toString());
+        try{
+            Bundle bundle = getIntent().getExtras();
+            String _fromEditText= bundle.getString("fromEditText");
+            String _toEditText = bundle.getString("toEditText");
+            String _departureDateEditText=bundle.getString("departureDateEditText");
+            String _departureTimeEditText=bundle.getString("departureTimeEditText");
+            String _ridePriceEditText= bundle.getString("PriceEditText");
+
+            try{
+                ridContext.stopOverlatlongs.size();
+
+                Log.d("Value", String.valueOf(ridContext.stopOverlatlongs.size()));
+
+
+
+
+            }catch (Exception e){
+               showMessage("StopOverDumped...");
+            }
+
+
+          //  Log.d("Result....", String.valueOf(ridContext.stopOverlatlongs.size()));
+
+
+            Log.d("Result...","From"+_fromEditText+"To"+_toEditText+"DeDate"+_departureDateEditText+"DeTime"+_departureTimeEditText+"Price"+_ridePriceEditText);
+
+
+        }catch (Exception e){
+            Log.d("dfsadfsda","dsfdsfsd");
+
+        }
+
+
+
 
     }
 
@@ -180,11 +236,11 @@ public class CarDetailActivity extends AppCompatActivity implements View.OnClick
 
         int in = Integer.parseInt(inCredeCreTextView.getText().toString());
 
-        if(in>1) {
+        if (in > 1) {
             in = in - 1;
             counterStringVal = Integer.toString(in);
             inCredeCreTextView.setText(counterStringVal);
-        } else{
+        } else {
             showMessage("At least need one seat");
         }
 

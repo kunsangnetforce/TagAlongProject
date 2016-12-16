@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,11 +23,16 @@ import android.widget.TimePicker;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.directions.route.Route;
+import com.directions.route.RouteException;
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.vision.text.Line;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.home.offerride.returnstopover.RestopOverData;
@@ -38,13 +44,14 @@ import com.netforceinfotech.tagalong.home.offerride.stopover.StopOverData;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
-public class RideDetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class RideDetailActivity extends AppCompatActivity implements View.OnClickListener, RoutingListener {
     String TAG = "google_result";
     private static final int PLACE_FROM = 101;
     private static final int PLACE_TO = 105;
     private static final int STOP_OVER_ADD = 100;
-    private static final int RE_STOP_OVER_ADD =103;
+    private static final int RE_STOP_OVER_ADD = 103;
     boolean oneway = true;
     LinearLayout linearLayoutRoundTrip;
     private int mYear, mMonth, mDay, mHour, mMinute;
@@ -57,13 +64,18 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
     private EditText departureDateEditText, departureTimeEditText, returnDateEditText, returnTimeEditText;
     EditText toEditText, fromEditText, priceEditText, stopoverEditText, returnstopoverEditText;
 
-    ImageView stopoveroneImageView,returnStopOverImage;
-    RecyclerView stopOverRecycler,restopOverRecycler;
-    ArrayList<StopOverData> stopOverDatas = new ArrayList<>();
+    ImageView stopoveroneImageView, returnStopOverImage;
+    RecyclerView stopOverRecycler, restopOverRecycler;
+    public ArrayList<StopOverData> stopOverDatas = new ArrayList<>();
 
-    StopOverAdapter stopOverAdapter;
+    public StopOverAdapter stopOverAdapter;
     ReturnStopOverAdapter returnStopOverAdapter;
     ArrayList<RestopOverData> restopOverDatas = new ArrayList<>();
+    public  List<LatLng> stopOverlatlongs = new ArrayList<LatLng>();
+    public List<String> stopOverlatlongs2 = new ArrayList<String>();
+
+    TextView distanceTextView, suggestedPriceTextView;
+    private LatLng destination, origin;
 
 
     @Override
@@ -84,9 +96,38 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
         }
         initView();
 
-        setupToolbar(rideDetail);
+        setupToolbar(getString(R.string.rideDetail));
 
         setUpRecycler();
+
+
+    }
+
+    public void setStopOversData() {
+
+
+        ArrayList<LatLng> waypoints = new ArrayList<>();
+        waypoints.add(origin);
+        waypoints.addAll(stopOverlatlongs);
+        waypoints.add(destination);
+
+        if (waypoints.size() == 0) {
+
+            Routing routing = new Routing.Builder()
+                    .travelMode(Routing.TravelMode.DRIVING)
+                    .withListener(this)
+                    .build();
+
+            routing.execute();
+        }
+
+        Routing routing = new Routing.Builder()
+                .travelMode(Routing.TravelMode.DRIVING)
+                .withListener(this)
+                .waypoints(waypoints)
+                .build();
+
+        routing.execute();
 
 
     }
@@ -95,8 +136,8 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
 
         restopOverRecycler = (RecyclerView) findViewById(R.id.RestopOverRecycler);
 
-        LinearLayoutManager lm = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        returnStopOverAdapter = new ReturnStopOverAdapter(this,restopOverDatas);
+        LinearLayoutManager lm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        returnStopOverAdapter = new ReturnStopOverAdapter(this, restopOverDatas);
         restopOverRecycler.setLayoutManager(lm);
         restopOverRecycler.setAdapter(returnStopOverAdapter);
 
@@ -110,6 +151,12 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
 
     private void initView() {
 
+
+        suggestedPriceTextView = (TextView) findViewById(R.id.suggestedPriceTextView);
+
+        priceEditText = (EditText) findViewById(R.id.priceEditText);
+
+        distanceTextView = (TextView) findViewById(R.id.distanceTextView);
         returnStopOverImage = (ImageView) findViewById(R.id.returnStopOverImage);
         returnStopOverImage.setOnClickListener(this);
         stopoverEditText = (EditText) findViewById(R.id.stopoverEditText);
@@ -139,7 +186,7 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
         fromEditText.setOnClickListener(this);
         toEditText = (EditText) findViewById(R.id.toEditText);
         toEditText.setOnClickListener(this);
-        context=this;
+        context = this;
 
 
     }
@@ -205,8 +252,8 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
 
                 showMessage("imageViewStopoverOne CAlled");
 
-
                 AddStopOverDatas();
+
 
                 break;
             case R.id.toEditText:
@@ -218,7 +265,7 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
 
                 } catch (GooglePlayServicesRepairableException e) {
 
-                    Log.d("Error...", String.valueOf(e));
+                    e.fillInStackTrace();
                 } catch (GooglePlayServicesNotAvailableException e) {
                 }
                 break;
@@ -237,11 +284,9 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.textViewNext:
-                intent = new Intent(context, CarDetailActivity.class);
-                bundle = new Bundle();
-                bundle.putBoolean("oneway", oneway);
-                intent.putExtras(bundle);
-                startActivity(intent);
+
+                GetDataBeforeNextActivity();
+
                 overridePendingTransition(R.anim.enter, R.anim.exit);
                 break;
             case R.id.departureEditText:
@@ -260,14 +305,66 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    private void GetDataBeforeNextActivity() {
+
+        if (!fromEditText.getText().toString().isEmpty()) {
+
+            if (!toEditText.getText().toString().isEmpty()) {
+
+                if (!departureDateEditText.getText().toString().isEmpty()) {
+
+                    if (!departureTimeEditText.getText().toString().isEmpty()) {
+
+
+                        if (!priceEditText.getText().toString().isEmpty()) {
+
+                            // if all the condition satisfied then perform the intent activity....
+
+                            intent = new Intent(context, CarDetailActivity.class);
+
+                            bundle = new Bundle();
+                            bundle.putBoolean("oneway", oneway);
+                            // tashiDev
+                            bundle.putString("fromEditText", fromEditText.getText().toString());
+                            bundle.putString("toEditText", toEditText.getText().toString());
+                            bundle.putString("departureDateEditText", departureDateEditText.getText().toString());
+                            bundle.putString("departureTimeEditText", departureTimeEditText.getText().toString());
+                            bundle.putString("PriceEditText", priceEditText.getText().toString());
+                            // tashi...
+
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+
+                        } else {
+                            showMessage("Please Enter the Price");
+                        }
+                    } else {
+                        showMessage("Please Select the Departure Time");
+                    }
+                } else {
+                    showMessage("Please Select the Departure Date");
+                }
+            } else {
+
+                showMessage("Please Enter Destination Location");
+            }
+
+
+        } else {
+            showMessage("Please Enter From Location");
+        }
+
+
+    }
+
     private void AddReturnStopOverData() {
 
-        if(returnstopoverEditText.length()!=0){
+        if (returnstopoverEditText.length() != 0) {
 
             restopOverDatas.add(new RestopOverData(returnstopoverEditText.getText().toString()));
             returnStopOverAdapter.notifyDataSetChanged();
             returnstopoverEditText.getText().clear();
-        }else {
+        } else {
             showMessage("Enter Return Stop Over");
         }
     }
@@ -275,17 +372,24 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
     private void AddStopOverDatas() {
 
 
-            if(stopoverEditText.length()!=0){
-                stopOverDatas.add(new StopOverData(stopoverEditText.getText().toString()));
-                stopOverAdapter.notifyDataSetChanged();
-                stopoverEditText.getText().clear();
+        if (stopoverEditText.length() != 0) {
+            stopOverDatas.add(new StopOverData(stopoverEditText.getText().toString()));
+            stopOverAdapter.notifyDataSetChanged();
+            stopoverEditText.getText().clear();
+            // calcute the route distance....
 
-            }else {
-                showMessage("StopOver Field is empty");
+            Log.d("DataSize", String.valueOf(stopOverlatlongs.size()));
 
-            }
+
+            setStopOversData();
+
+
+        } else {
+            showMessage("StopOver Field is empty");
 
         }
+
+    }
 
 
     @Override
@@ -297,9 +401,18 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 String plaze = place.getName().toString();
+                LatLng latlng = place.getLatLng();
+                double lat = latlng.latitude;
+                double longi = latlng.longitude;
+                origin = new LatLng(lat, longi);
+                stopOverlatlongs.add(new LatLng(lat, longi));
+
+
                 Log.i(TAG, "Place: " + place.getName());
                 showMessage("The Place name is" + place.getName());
                 fromEditText.setText(plaze);
+
+                //TashiDev
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 Status status = PlaceAutocomplete.getStatus(this, data);
@@ -318,8 +431,15 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 String plaze = place.getName().toString();
-
+                LatLng latlng = place.getLatLng();
+                double lat = latlng.latitude;
+                double longi = latlng.longitude;
+                destination = new LatLng(lat, longi);
                 toEditText.setText(plaze);
+
+                showMessage("SetStopOverCalled");
+
+                setStopOversData();
 
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
                 Status status = PlaceAutocomplete.getStatus(this, data);
@@ -336,8 +456,17 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 String plaze = place.getName().toString();
+                LatLng la = place.getLatLng();
+
+                double longi = la.longitude;
+                double latit = la.latitude;
+// passed the datas to find the distance...
+                stopOverlatlongs.add(new LatLng(latit, longi));
 
                 stopoverEditText.setText(plaze);
+
+//                getthedistance....
+
 
                 return;
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
@@ -357,6 +486,11 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
             if (resultCode == RESULT_OK) {
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 String plaze = place.getName().toString();
+                LatLng latlng = place.getLatLng();
+                double lat = latlng.latitude;
+                double longi = latlng.longitude;
+
+                stopOverlatlongs.add(new LatLng(lat, longi));
 
                 returnstopoverEditText.setText(plaze);
 
@@ -476,4 +610,49 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
     }
 
 
+    @Override
+    public void onRoutingFailure(RouteException e) {
+
+        e.fillInStackTrace();
+        Log.d("Routing Failed", String.valueOf(e));
+
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+
+    }
+
+    @Override
+    public void onRoutingSuccess(ArrayList<Route> arrayList, int i) {
+
+        String distance = arrayList.get(i).getDistanceText().toString();
+
+        distanceTextView.setText(distance);
+        String distanceValue = String.valueOf(arrayList.get(i).getDistanceValue());
+
+
+        double _rate = 0.5; // server ....
+
+        // patterns haves to be applied...
+
+
+        double amo = Double.parseDouble(distance.replace(",", "").replace("km", ""));
+        double final_amount = amo * _rate;
+        Log.d("dfasfsa", String.valueOf(final_amount));
+        String final_Amount = String.valueOf(final_amount);
+
+        suggestedPriceTextView.setText(final_Amount + "$");
+
+        Log.d("Distance", distance);
+
+
+    }
+
+    @Override
+    public void onRoutingCancelled() {
+
+
+    }
 }
