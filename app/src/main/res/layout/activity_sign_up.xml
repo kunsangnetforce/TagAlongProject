@@ -211,17 +211,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:id="@+id/ll_preferd_lang"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:id="@+id/rl_preferd_lang"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:id="@+id/img_languagesignup"
                     android:src="@drawable/languagesignup" />
 
                 <TextView
@@ -232,6 +235,7 @@
                     android:layout_marginLeft="16dp"
                     android:background="@android:color/transparent"
                     android:hint="Prefered Language"
+                    android:layout_toRightOf="@+id/img_languagesignup"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/grey"
                     android:textColorHint="@color/grey" />
