@@ -299,6 +299,7 @@ String Webservice_signup_url=getResources().getString(R.string.webservice_api_ur
                         if(result!=null)
                         {
                             Log.e("result",result.toString());
+                            finish();
                         }
                         else {
                             Log.e("result_null","result_null");
