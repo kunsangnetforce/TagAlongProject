@@ -27,16 +27,27 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.netforceinfotech.tagalong.home.HomeActivity;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.login.Validation.Validation;
 
+import java.security.KeyManagementException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -164,7 +175,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if(isValidEmail(emailLogin)){
                           if(!userLoginPasswordEditText.getText().toString().trim().isEmpty()){
 
-                              showMessage("Validation success");
+
+                              call_login_webservice(context);
+
+
                               Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                               startActivity(intent);
                               overridePendingTransition(R.anim.enter, R.anim.exit);
@@ -191,6 +205,44 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    private void call_login_webservice(Context context) {
+        setupSelfSSLCert();
+
+        JsonObject js=new JsonObject();
+        js.addProperty("type", "login");
+        js.addProperty("vEmail",userLoginEmailEditText.getText().toString().trim());
+        js.addProperty("vPassword", userLoginPasswordEditText.getText().toString().trim());
+
+
+
+        Log.e("js",js.toString());
+
+        String Webservice_login_url=getResources().getString(R.string.webservice_api_url);
+        Log.e("Webservice_login_url",Webservice_login_url);
+        Ion.with(context)
+                .load(Webservice_login_url)
+                .setJsonObjectBody(js)
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+                        if(result!=null)
+                        {
+                            Log.e("result",result.toString());
+                        }
+                        else {
+                            Log.e("result_null","result_null");
+                        }
+                        // do stuff with the result or error
+                    }
+                });
+
+
+
+
+
+    }
+
     private boolean isValidEmail(String email) {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -203,5 +255,54 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void showMessage(String s) {
 
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+
+
+
+    private static class Trust implements X509TrustManager {
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void checkClientTrusted(final X509Certificate[] chain, final String authType)
+                throws CertificateException {
+
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void checkServerTrusted(final X509Certificate[] chain, final String authType)
+                throws CertificateException {
+
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+
+    }
+
+    public void setupSelfSSLCert() {
+        final LoginActivity.Trust trust = new LoginActivity.Trust();
+        final TrustManager[] trustmanagers = new TrustManager[]{trust};
+        SSLContext sslContext;
+        try {
+            sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, trustmanagers, new SecureRandom());
+            Ion.getInstance(context, "rest").getHttpClient().getSSLSocketMiddleware().setTrustManagers(trustmanagers);
+            Ion.getInstance(context, "rest").getHttpClient().getSSLSocketMiddleware().setSSLContext(sslContext);
+        } catch (final NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (final KeyManagementException e) {
+            e.printStackTrace();
+        }
     }
 }
