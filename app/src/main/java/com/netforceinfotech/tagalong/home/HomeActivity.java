@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,12 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.chat.MyChatActivity;
 import com.netforceinfotech.tagalong.dashboard.MyDashboardActivity;
@@ -28,7 +35,9 @@ import com.netforceinfotech.tagalong.myCars.carlist.CarListActivity;
 import com.netforceinfotech.tagalong.myprofile.MyProfileActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -38,6 +47,8 @@ public class HomeActivity extends AppCompatActivity {
     private Menu menu;
     DrawerLayout drawerLayout;
     private Intent intent;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mFirebaseAuth;
 
 
     @Override
@@ -46,12 +57,28 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         context = this;
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        testFirebase();
         setupToolBar(getString(R.string.home).toUpperCase());
         setupNavigationView();
         setupTab();
+
+
+        //firebase testing
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
+
+//        Log.e("mDatabase.getRoot()", mDatabase.getRoot().toString());
+
         if (true) {
             showReviewPopUp();
         }
+    }
+
+    private void testFirebase() {
+        DatabaseReference _public = FirebaseDatabase.getInstance().getReference().child("public");
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", "123");
+        _public.updateChildren(map);
     }
 
     private void showReviewPopUp() {

@@ -1,6 +1,8 @@
 package com.netforceinfotech.tagalong.login;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.netforceinfotech.tagalong.R;
+import com.netforceinfotech.tagalong.home.HomeActivity;
 import com.shehabic.droppy.DroppyClickCallbackInterface;
 import com.shehabic.droppy.DroppyMenuPopup;
 import com.shehabic.droppy.animations.DroppyFadeInAnimation;
@@ -47,6 +50,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     LinearLayout ll_preferd_lang;
     RelativeLayout rl_preferd_lang;
     private ImageView userlangdropdownlist;
+    ProgressDialog pd;
 
 
     @Override
@@ -61,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initView() {
-
+        pd=new ProgressDialog(this);
         user_name = (EditText) findViewById(R.id.userNameEditText);
         user_email = (EditText) findViewById(R.id.userEmailEditText);
         user_password = (EditText) findViewById(R.id.userPasswordEditText);
@@ -209,7 +213,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-                                              showMessage("Validation Successful...");
+
 
                                           }else {
                                               user_password.getText().clear();
@@ -290,20 +294,28 @@ String Webservice_signup_url=getResources().getString(R.string.webservice_api_ur
         Ion.with(context)
                 .load(Webservice_signup_url)
                 .setJsonObjectBody(js)
-                .asString()
-                .setCallback(new FutureCallback<String>() {
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
                     @Override
-                    public void onCompleted(Exception e, String result) {
-
-
-                        if(result!=null)
+                    public void onCompleted(Exception e, JsonObject result) {
+                        String login_status=result.get("action").getAsString();
+                        if(login_status.contains("1"))
                         {
+                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.enter, R.anim.exit);
                             Log.e("result",result.toString());
                             finish();
                         }
-                        else {
-                            Log.e("result_null","result_null");
+                        else{
+                            showMessage("Incorrect Username or password ");
                         }
+
+                        if(pd!=null)
+                        {
+                            pd.dismiss();
+                        }
+
                         // do stuff with the result or error
                     }
                 });

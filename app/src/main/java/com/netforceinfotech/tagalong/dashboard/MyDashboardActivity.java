@@ -2,13 +2,21 @@ package com.netforceinfotech.tagalong.dashboard;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.chat.MyChatActivity;
 
@@ -16,11 +24,16 @@ public class MyDashboardActivity extends AppCompatActivity {
     Context context;
     Toolbar toolbar;
     private Intent intent;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mFirebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_dashboard);
+
+
+
         context=this;
         setupToolBar(getString(R.string.my_dashboard));
     }
@@ -65,5 +78,6 @@ public class MyDashboardActivity extends AppCompatActivity {
     private void showMessage(String s) {
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
+
 
 }

@@ -1,5 +1,6 @@
 package com.netforceinfotech.tagalong.login;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private List<String> permissions;
     public CallbackManager mCallbackManager;
     Context context;
+    ProgressDialog pd;
     private EditText userLoginEmailEditText,userLoginPasswordEditText;
 
 
@@ -75,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     private void InitView() {
-
+   pd=new ProgressDialog(this);
 
         loginButton = (Button) findViewById(R.id.loginButton);
         signupTextView = (TextView) findViewById(R.id.signupTextView);
@@ -204,6 +207,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void call_login_webservice(Context context) {
+
+        pd.show();
         setupSelfSSLCert();
 
         JsonObject js=new JsonObject();
@@ -230,6 +235,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             startActivity(intent);
                             overridePendingTransition(R.anim.enter, R.anim.exit);
                             Log.e("result",result.toString());
+                           String login_status=result.get("action").getAsString();
+                            if(login_status.contains("1"))
+                            {
+                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.enter, R.anim.exit);
+                            }
+                            else{
+                                showMessage("Incorrect Username or password ");
+                            }
+
+
+if(pd!=null)
+{
+    pd.dismiss();
+}
+
+
                         }
                         else {
                             Log.e("result_null","result_null");
