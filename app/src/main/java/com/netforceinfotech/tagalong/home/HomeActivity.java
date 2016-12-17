@@ -70,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
 //        Log.e("mDatabase.getRoot()", mDatabase.getRoot().toString());
 
         if (true) {
-            showReviewPopUp();
+           // showReviewPopUp();
         }
     }
 

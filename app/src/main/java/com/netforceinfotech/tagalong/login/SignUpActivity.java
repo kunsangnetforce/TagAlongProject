@@ -228,7 +228,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                       }
 
 
-                                  }else{
+                                  }
+                                  else{
                                       user_password.getText().clear();
                                       user_repassword.getText().clear();
                                       user_password.setFocusable(true);
@@ -298,15 +299,20 @@ String Webservice_signup_url=getResources().getString(R.string.webservice_api_ur
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
+                        Log.e("result",result.toString());
                         String login_status=result.get("action").getAsString();
-                        if(login_status.contains("1"))
+
+                        if(login_status.contains("0"))
                         {
+                            String message2=result.get("message").getAsString();
+                            showMessage(message2);
+
+                        }
+                        else{
                             Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                             startActivity(intent);
                             overridePendingTransition(R.anim.enter, R.anim.exit);
-                        }
-                        else{
-                            showMessage("Incorrect Username or password ");
+                            showMessage("Sucessfully Signup");
                         }
 
                         if(pd!=null)
