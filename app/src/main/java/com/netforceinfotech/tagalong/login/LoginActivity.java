@@ -179,9 +179,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                               call_login_webservice(context);
 
 
-                              Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                              startActivity(intent);
-                              overridePendingTransition(R.anim.enter, R.anim.exit);
+
 
 
                           }else {
@@ -222,12 +220,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Ion.with(context)
                 .load(Webservice_login_url)
                 .setJsonObjectBody(js)
-                .asString()
-                .setCallback(new FutureCallback<String>() {
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
                     @Override
-                    public void onCompleted(Exception e, String result) {
+                    public void onCompleted(Exception e, JsonObject result) {
                         if(result!=null)
                         {
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.enter, R.anim.exit);
                             Log.e("result",result.toString());
                         }
                         else {
@@ -236,10 +237,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         // do stuff with the result or error
                     }
                 });
-
-
-
-
 
     }
 
