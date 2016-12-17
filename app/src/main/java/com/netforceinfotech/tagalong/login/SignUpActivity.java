@@ -306,6 +306,9 @@ String Webservice_signup_url=getResources().getString(R.string.webservice_api_ur
                             overridePendingTransition(R.anim.enter, R.anim.exit);
                             Log.e("result",result.toString());
                             finish();
+                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.enter, R.anim.exit);
                         }
                         else{
                             showMessage("Incorrect Username or password ");

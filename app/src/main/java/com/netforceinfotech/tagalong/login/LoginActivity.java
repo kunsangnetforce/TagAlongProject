@@ -253,6 +253,24 @@ if(pd!=null)
 }
 
 
+                           String login_status=result.get("action").getAsString();
+                            if(login_status.contains("1"))
+                            {
+                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.enter, R.anim.exit);
+                            }
+                            else{
+                                showMessage("Incorrect Username or password ");
+                            }
+
+
+if(pd!=null)
+{
+    pd.dismiss();
+}
+
+
                         }
                         else {
                             Log.e("result_null","result_null");
