@@ -2,7 +2,9 @@ package com.netforceinfotech.tagalong.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -11,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,13 +26,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.chat.MyChatActivity;
 import com.netforceinfotech.tagalong.dashboard.MyDashboardActivity;
 import com.netforceinfotech.tagalong.driverProfile.DriverProfile;
 import com.netforceinfotech.tagalong.home.findride.CantFindRideActivity;
+import com.netforceinfotech.tagalong.login.LoginActivity;
 import com.netforceinfotech.tagalong.myCars.MyCarActivity;
 import com.netforceinfotech.tagalong.myCars.carlist.CarListActivity;
 import com.netforceinfotech.tagalong.myprofile.MyProfileActivity;
@@ -49,22 +58,31 @@ public class HomeActivity extends AppCompatActivity {
     private Intent intent;
     private DatabaseReference mDatabase;
     private FirebaseAuth mFirebaseAuth;
+    SharedPreferences sp ;
+    private DatabaseReference _user_group;
+    String userid;
+    private boolean child_group_exist = false;
 
-
+    boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        sp = getSharedPreferences(
+                getString(R.string.preference_tagalong), Context.MODE_PRIVATE);
         context = this;
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        testFirebase();
+        userid=sp.getString("userid","notlogin");
+        Log.e("userid",userid);
+        setupFirebase(userid,"");
+        //testFirebase();
         setupToolBar(getString(R.string.home).toUpperCase());
         setupNavigationView();
         setupTab();
 
 
         //firebase testing
-        mFirebaseAuth = FirebaseAuth.getInstance();
+
 
 
 //        Log.e("mDatabase.getRoot()", mDatabase.getRoot().toString());
@@ -74,11 +92,189 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+
+
+    private void setupFirebase(final String userid, final String user_image) {
+        _user_group = FirebaseDatabase.getInstance().getReference().child("chat_title");
+        _user_group.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.hasChild(userid)){
+                    createUserChild(dataSnapshot, userid, user_image);
+                } else {
+                    insertnewUser(dataSnapshot, userid, user_image);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    private void insertnewUser(DataSnapshot dataSnapshot, final String user_id, final String image) {
+        final DatabaseReference _user_id = _user_group.child(user_id);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put(user_id,"");
+
+
+
+        _user_id.updateChildren(map);
+        _user_id.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                DatabaseReference _group_id = _user_id.child(user_id);
+                Map<String, Object> map1 = new HashMap<String, Object>();
+
+
+                map1.put("user_name", "demo");
+                map1.put("timestamp", ServerValue.TIMESTAMP);
+                map1.put("key", ServerValue.TIMESTAMP);
+                map1.put("image", image);
+
+                _group_id.updateChildren(map1);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void createUserChild(DataSnapshot dataSnapshot, final String user_id, final String image) {
+        final HashMap<String, Object> user_id_map = new HashMap<String, Object>();
+        //user_id_map.put("user_id",user_id);
+        _user_group.updateChildren(user_id_map);
+        _user_group.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                insertnewUser(dataSnapshot, user_id, image);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private void testFirebase() {
-        DatabaseReference _public = FirebaseDatabase.getInstance().getReference().child("public");
+        DatabaseReference chat_title = FirebaseDatabase.getInstance().getReference().child("chat-title").push();
+        DatabaseReference chat_detail = FirebaseDatabase.getInstance().getReference().child("chat_detail").push();
+
         Map<String, Object> map = new HashMap<>();
         map.put("id", "123");
-        _public.updateChildren(map);
+        chat_title.updateChildren(map);
+
+        // chat_title_child reference
+
+        DatabaseReference chat_detail_child =chat_title.getRef().child("child_chat_detail").push();
+        Map<String, Object> chat_detail_child_map = new HashMap<>();
+        chat_detail_child_map.put("sender_userid", "123");
+        chat_detail_child_map.put("receiving_userid", "123");
+        chat_detail_child.updateChildren(chat_detail_child_map);
+
+        DatabaseReference chat_detail_sender_child =chat_title.getRef().child("child_chat_detail").push();
+        Map<String, Object> chat_detail_child_chat_detail = new HashMap<>();
+        chat_detail_child_map.put("sender_userid", "123");
+        chat_detail_child_map.put("sender_imageurl", "https://");
+        chat_detail_child_map.put("sender_name", "arvind");
+        chat_detail_child_map.put("sender_key", System.currentTimeMillis()+"tagalong");
+        chat_detail_sender_child.updateChildren(chat_detail_child_chat_detail);
+
+        DatabaseReference chat_detail_Receivng_child =chat_title.getRef().child("child_chat_detail").push();
+        Map<String, Object> chat_detail_child_chat_receiving_detail = new HashMap<>();
+        chat_detail_child_map.put("receiving_userid", "123");
+        chat_detail_child_map.put("receiving_imageurl", "https://");
+        chat_detail_child_map.put("receiving_name", "arvind");
+        chat_detail_child_map.put("receiving_key", System.currentTimeMillis()+"tagalong");
+        chat_detail_Receivng_child.updateChildren(chat_detail_child_chat_receiving_detail);
+
+
+
+
+
+        // chat_title_child reference
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("id", "123");
+        chat_detail.updateChildren(map2);
+
+        DatabaseReference chat_title_child =chat_detail.getRef().child("child_chat_detail").push();
+        Map<String, Object> chat_title_child_map = new HashMap<>();
+        chat_title_child_map.put("userid", "123");
+        chat_title_child_map.put("username", "nishant");
+        chat_title_child_map.put("image_url", "https://");
+        chat_title_child_map.put("chatkey",System.currentTimeMillis()+"tagalong");
+        chat_title_child.updateChildren(chat_title_child_map);
+
     }
 
     private void showReviewPopUp() {
@@ -134,10 +330,29 @@ public class HomeActivity extends AppCompatActivity {
     private void setupTab() {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        //For some reason, setting minWidth in xml and then accessing it here doesn't work, returns 0
+        int minWidth = 80;
+        tabLayout.setMinimumWidth(minWidth);
+
+        //If there are less tabs than needed to necessitate scrolling, set to fixed/fill
+        if(tabLayout.getTabCount() < dpWidth/minWidth){
+            tabLayout.setTabMode(TabLayout.MODE_FIXED);
+            tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        }else{
+            //Otherwise, set to scrollable
+            tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+        }
+
+
+
         tabLayout.addTab(tabLayout.newTab().setText(R.string.find_a_ride_cap));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.offer_a_ride_cap));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+//        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+//        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final PagerAdapterHome adapter = new PagerAdapterHome
                 (getSupportFragmentManager(), tabLayout.getTabCount());
@@ -195,6 +410,7 @@ public class HomeActivity extends AppCompatActivity {
         menu.add(getString(R.string.setting)).setIcon(R.drawable.ic_setting);
         menu.add(getString(R.string.how_it_work)).setIcon(R.drawable.ic_help);
         menu.add(getString(R.string.latest_ride)).setIcon(R.drawable.ic_latest);
+        menu.add(getString(R.string.Logout)).setIcon(R.drawable.ic_user);
 
 
         for (int i = 0; i < menu.size(); i++) {
@@ -247,6 +463,17 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent);
                         overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;
+                    case 9:
+
+                            sp.edit().putString("userid","notlogin").commit();
+                            intent = new Intent(context, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                            overridePendingTransition(R.anim.enter, R.anim.exit);
+                            break;
+
+
+
 
                     default:
 
@@ -272,6 +499,31 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
+    }
+    @Override
+    public void onBackPressed() {
+
+
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+
+
+
+
+        // do nothing.
     }
 
 

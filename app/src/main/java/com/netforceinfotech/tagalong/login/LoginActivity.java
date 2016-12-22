@@ -3,6 +3,7 @@ package com.netforceinfotech.tagalong.login;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -29,6 +30,11 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -43,7 +49,9 @@ import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -62,6 +70,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public CallbackManager mCallbackManager;
     Context context;
     ProgressDialog pd;
+    public static SharedPreferences sp;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("message");
+    DatabaseReference mdatabase;
     private EditText userLoginEmailEditText,userLoginPasswordEditText;
 
 
@@ -72,9 +85,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         AppEventsLogger.activateApp(getApplication());
         setContentView(R.layout.activity_login);
         InitView();
+        sp = getSharedPreferences(
+                getString(R.string.preference_tagalong), Context.MODE_PRIVATE);
+
+
 
 
     }
+
+
+
+
+
+
+
+
+
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("id", "123");
+//        _public.updateChildren(map);
+
+
+
+
+
 
 
     private void InitView() {
@@ -217,8 +251,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         js.addProperty("vPassword", userLoginPasswordEditText.getText().toString().trim());
 
 
+Log.e("js_login",js.toString());
 
-        Log.e("js",js.toString());
 
         String Webservice_login_url=getResources().getString(R.string.webservice_api_url);
         Log.e("Webservice_login_url",Webservice_login_url);
@@ -234,6 +268,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                            String login_status=result.get("action").getAsString();
                             if(login_status.contains("1"))
                             {
+                                String userid=result.get("iMemberId").getAsString();
+                                Log.e("result",userid.toString());
+                                sp.edit().putString("userid",userid).commit();
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                 startActivity(intent);
                                 overridePendingTransition(R.anim.enter, R.anim.exit);
@@ -280,7 +317,7 @@ if(pd!=null)
 
 
 
-    private static class Trust implements X509TrustManager {
+    public static class Trust implements X509TrustManager {
 
         /**
          * {@inheritDoc}
