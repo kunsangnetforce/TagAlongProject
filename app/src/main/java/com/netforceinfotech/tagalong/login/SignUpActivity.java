@@ -201,6 +201,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
                                           if(user_password.getText().toString().trim().equals(user_repassword.getText().toString().trim())){
+
                                               call_signup_webservice(context);
 
 
@@ -281,13 +282,26 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
         JsonObject js=new JsonObject();
-        js.addProperty("type", "register");
-        js.addProperty("vFirstName",user_name.getText().toString().trim());
-        js.addProperty("vLastName", "test");
-        js.addProperty("vEmail",user_email.getText().toString().trim());
-        js.addProperty("vPassword", user_password.getText().toString().trim());
+        String fbid=LoginActivity.sp.getString("fbid","null_fb");
 
-        js.addProperty("vLanguageCode", "eng");
+        if(LoginActivity.sp.getString("fbid","null_fb").equals(null))
+        {
+            js.addProperty("type", "register");
+            js.addProperty("vFirstName",user_name.getText().toString().trim());
+            js.addProperty("vLastName", "test");
+            js.addProperty("vEmail",user_email.getText().toString().trim());
+            js.addProperty("vPassword", user_password.getText().toString().trim());
+
+            js.addProperty("vLanguageCode", "eng");
+        }
+        else{
+
+            js.addProperty("type", "login_with_fb");
+            js.addProperty("vEmail",user_email.getText().toString().trim());
+            js.addProperty("iFBId ", fbid);
+
+
+        }
         Log.e("js",js.toString());
 
 String Webservice_signup_url=getResources().getString(R.string.webservice_api_url);

@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class ApplyFilterActivity extends AppCompatActivity implements CompoundBu
     private String tagName = "";
     Toolbar toolbar;
     private Intent intent;
+    LinearLayout ll_filter_Time,ll_filter_Price,ll_filter_Picture,ll_filter_RideType,ll_filter_CarComfort,ll_filter_Rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,20 @@ public class ApplyFilterActivity extends AppCompatActivity implements CompoundBu
 
     private void initView() {
         findViewById(R.id.buttonApply).setOnClickListener(this);
+        ll_filter_Time=(LinearLayout)findViewById(R.id.ll_filter_Time) ;
+        ll_filter_CarComfort=(LinearLayout)findViewById(R.id.ll_filter_CarComfort) ;
+        ll_filter_Picture=(LinearLayout)findViewById(R.id.ll_filter_Picture) ;
+        ll_filter_Rating=(LinearLayout)findViewById(R.id.ll_filter_Rating) ;
+        ll_filter_RideType=(LinearLayout)findViewById(R.id.ll_filter_RideType) ;
+        ll_filter_Price=(LinearLayout)findViewById(R.id.ll_filter_Price) ;
+        ll_filter_Rating.setOnClickListener(this);
+        ll_filter_Price.setOnClickListener(this);
+        ll_filter_RideType.setOnClickListener(this);
+        ll_filter_CarComfort.setOnClickListener(this);
+        ll_filter_Time.setOnClickListener(this);
+        ll_filter_Picture.setOnClickListener(this);
+
+
         textViewTime = (TextView) findViewById(R.id.textViewTime);
         textViewPrice = (TextView) findViewById(R.id.textViewPrice);
         textViewPicture = (TextView) findViewById(R.id.textViewPicture);
@@ -216,22 +232,22 @@ public class ApplyFilterActivity extends AppCompatActivity implements CompoundBu
                 overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
 
                 break;
-            case R.id.textViewTime:
+            case R.id.ll_filter_Time:
                 radioButtonTime.setChecked(true);
                 break;
-            case R.id.textViewCarComfort:
+            case R.id.ll_filter_CarComfort:
                 radioButtonCarComfort.setChecked(true);
                 break;
-            case R.id.textViewPicture:
+            case R.id.ll_filter_Picture:
                 radioButtonPictures.setChecked(true);
                 break;
-            case R.id.textViewPrice:
+            case R.id.ll_filter_Price:
                 radioButtonPrice.setChecked(true);
                 break;
-            case R.id.textViewRideType:
+            case R.id.ll_filter_RideType:
                 radioButtonRideType.setChecked(true);
                 break;
-            case R.id.textViewRating:
+            case R.id.ll_filter_Rating:
                 radioButtonRating.setChecked(true);
                 break;
 

@@ -7,33 +7,42 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.chat.MyChatActivity;
+import com.netforceinfotech.tagalong.home.findride.FindRideFragment;
 import com.netforceinfotech.tagalong.home.findride.applyfilter.ApplyFilterActivity;
+
+import java.util.ArrayList;
 
 public class RidesActivity extends AppCompatActivity {
 
     Context context;
     Toolbar toolbar;
     private Intent intent;
-
+    ArrayList<MyData> myDatas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rides);
         context=this;
         setupToolBar(getString(R.string.rides_available));
-        setupRecyclerView();
+        if(FindRideFragment.mydata.size()!=0)
+        setupRecyclerView(FindRideFragment.mydata);
+        else Log.e("null_findride",FindRideFragment.mydata.size()+"");
     }
 
 
-    private void setupRecyclerView() {
+    private void setupRecyclerView(ArrayList<MyData> mydata) {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        MyAdapter myAdapter = new MyAdapter(context, null);
+
+      //MyData mydata=new MyData("userid","userimageurl","username","ride_price","sourceaddress","destinationaddress","departuredata","departuretime",2);
+        //myDatas.add(mydata);
+        MyAdapter myAdapter = new MyAdapter(context, mydata);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(myAdapter);

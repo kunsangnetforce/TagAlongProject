@@ -23,10 +23,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphRequestAsyncTask;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -41,6 +46,9 @@ import com.koushikdutta.ion.Ion;
 import com.netforceinfotech.tagalong.home.HomeActivity;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.login.Validation.Validation;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.security.KeyManagementException;
 import java.security.MessageDigest;
@@ -71,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Context context;
     ProgressDialog pd;
     public static SharedPreferences sp;
-
+    String fbName, fbId,fbEmail,fbGender, photourl;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
     DatabaseReference mdatabase;
@@ -129,6 +137,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         permissions = new ArrayList<String>();
         permissions.add("email");
         permissions.add("user_birthday");
+        permissions.add("user_friends");
+        Log.e("permissions",permissions.toString());
+
+
         facebookButton.setReadPermissions(permissions);
         facebookButton.registerCallback(mCallbackManager, mcallback);
         userLoginEmailEditText = (EditText) findViewById(R.id.userLoginEmailEditText);
@@ -146,11 +158,100 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     FacebookCallback<LoginResult> mcallback = new FacebookCallback<LoginResult>() {
         @Override
-        public void onSuccess(LoginResult loginResult) {
+        public void onSuccess(final LoginResult loginResult) {
+//            Log.e("useremail_loginResult",loginResult.getAccessToken().getPermissions().toString());
+//
+//            final AccessToken accessToken = loginResult.getAccessToken();
+//
+//            GraphRequestAsyncTask request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
+//                @Override
+//                public void onCompleted(JSONObject user, GraphResponse graphResponse) {
+//
+//                    Log.e("useremail", user.optString("email"));
+//                    Log.e("username", user.optString("name"));
+//                    Log.e("userid", user.optString("id"));
+//
+//
+//
+//                    Log.e("getdatabyfacebook", graphResponse.toString());
+//
+//                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+//                    startActivity(intent);
+//                    overridePendingTransition(R.anim.enter, R.anim.exit);
+//                }
+//            }).executeAsync();
 
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.enter, R.anim.exit);
+
+
+
+
+            GraphRequest request = GraphRequest.newMeRequest(
+                    loginResult.getAccessToken(),
+                    new GraphRequest.GraphJSONObjectCallback() {
+                        public String home;
+
+                        @Override
+                        public void onCompleted(
+                                JSONObject object,
+                                GraphResponse response) {
+                            Log.i("facebook", response.toString());
+                            // Application code
+                            if (object != null) {
+                                try {
+                                    Log.e("object",object.toString());
+                                    //parameters.putString("fields", "id,name,email,gender, birthday,picture ");
+                                    AccessToken accessToken = loginResult.getAccessToken();
+                                    Profile profile = Profile.getCurrentProfile();
+
+                                    fbName = object.getString("name");
+                                    //userSessionManager.setName(fbName);
+
+
+                                    fbId = object.getString("id");
+                                    sp.edit().putString("fbId",fbId).commit();
+                                    // userSessionManager.setFBID(fbId);
+
+                                    fbEmail = object.getString("email");
+                                    //userSessionManager.setEmail(fbEmail);
+
+
+                                    fbGender = object.getString("gender");
+                                    String fbToken = accessToken.getToken();
+
+                                    //userSessionManager.setToken(fbToken);
+                                    //String reg_id = "621308328026023";
+
+
+
+                                   photourl =object.getJSONObject("picture").getJSONObject("data").getString("url");
+
+
+                                    Log.e("fbdata", fbToken + fbName + fbEmail+photourl);
+
+
+
+                                } catch (JSONException e) {
+                                    Log.e("JSONException", e.toString());
+                                }
+
+
+                            }
+                        }
+                    });
+
+            Bundle parameters = new Bundle();
+            parameters.putString("fields", "id,name,email,gender, birthday,picture.type(large)");
+            request.setParameters(parameters);
+            request.executeAsync();
+
+            call_facebookwebservice();
+
+
+
+
+
+
+
 
         }
 
@@ -164,6 +265,73 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
     };
+
+    private void call_facebookwebservice() {
+
+
+
+
+
+
+        pd.show();
+        setupSelfSSLCert();
+
+        JsonObject js=new JsonObject();
+        js.addProperty("type", "login_with_fb");
+        js.addProperty("vEmail",fbEmail);
+        js.addProperty("iFBId",fbId);
+js.addProperty("vImage",photourl);
+
+        Log.e("js_login",js.toString());
+
+        setupSelfSSLCert();
+        String Webservice_fb_login_url=getResources().getString(R.string.webservice_api_url);
+        Log.e("Webservice_login_url",Webservice_fb_login_url);
+
+
+        Ion.with(context)
+                .load(Webservice_fb_login_url)
+                .setJsonObjectBody(js)
+                .asJsonObject().setCallback(new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+                String action=result.get("action").getAsString();
+                if(action.equals("3"))
+                {
+
+                    Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.enter, R.anim.exit);
+                }
+                else{
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.enter, R.anim.exit);
+                }
+
+
+
+                Log.e("JsonObject_fb",result.toString());
+
+            }
+        });
+
+
+if(pd!=null)
+{
+    pd.dismiss();
+}
+
+
+
+
+
+
+
+
+
+
+    }
 
     @Override
     public void onClick(View v) {
