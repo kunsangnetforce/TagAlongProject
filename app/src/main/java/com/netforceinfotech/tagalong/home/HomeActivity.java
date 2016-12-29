@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -464,12 +465,13 @@ public class HomeActivity extends AppCompatActivity {
                         overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;
                     case 9:
-
+                            LoginManager.getInstance().logOut();
                             sp.edit().putString("userid","notlogin").commit();
                             intent = new Intent(context, LoginActivity.class);
                             startActivity(intent);
                             finish();
                             overridePendingTransition(R.anim.enter, R.anim.exit);
+
                             break;
 
 

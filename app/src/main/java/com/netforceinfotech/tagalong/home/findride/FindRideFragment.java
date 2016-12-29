@@ -39,11 +39,13 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -64,7 +66,7 @@ public class FindRideFragment extends Fragment implements View.OnClickListener, 
     ImageView imageFindRide;
     Context context;
     ProgressDialog pd;
-    String  place_From_Address,place_To_Address,place_To_lat,place_To_long,place_From_lat,place_From_long,From_lat_long;
+    String  place_From_Address,place_To_Address,place_To_lat,place_To_long,place_From_lat,To_lat_long,From_lat_long;
 
 public static ArrayList<MyData> mydata;
 
@@ -183,27 +185,24 @@ public static ArrayList<MyData> mydata;
 
 
 
-
+        mydata.clear();
 
 
         pd.show();
         setupSelfSSLCert();
 
         JsonObject js=new JsonObject();
-        js.addProperty("type", "find_ride");
+        js.addProperty("type","find_ride");
         js.addProperty("searchdate",selectDateEditText.getText().toString().trim());
-        js.addProperty("From_lat_long",place_From_lat );
-        js.addProperty("To_lat_long",place_To_lat );
+        js.addProperty("From_lat_long",From_lat_long);
+        js.addProperty("To_lat_long",To_lat_long);
+        js.addProperty("search","place");
 
-        js.addProperty("To",editTextTo.getText().toString().trim());
-        js.addProperty("From",editTextFrom.getText().toString().trim());
-
-
-        Log.e("js_login",js.toString());
 
 
         String find_ride_webservice="https://tag-along.net/webservice.php";
         Log.e("find_ride_webservice",find_ride_webservice);
+        Log.e("js_login",js.toString());
         Ion.with(context)
                 .load(find_ride_webservice)
                 .setJsonObjectBody(js)
@@ -213,30 +212,49 @@ public static ArrayList<MyData> mydata;
                     public void onCompleted(Exception e, JsonObject result) {
                         if(result!=null)
                         {
-JsonArray mainarray=result.getAsJsonArray("mainarr");
-                            if(mainarray.size()!=0) {
-                                for (int i = 0; i < mainarray.size(); i++) {
-                                    // "userid","userimageurl","username","ride_price","sourceaddress","destinationaddress","departuredata","departuretime",2
+//                            String mainarr=result.get("mainarr").getAsString();
+//                            if(mainarr.equals("No result found"))
+//                            {
+//
+//                                Toast.makeText(getActivity(),"No result found",Toast.LENGTH_SHORT).show();
+//                            }
+//                            else {
+                            if(result.get("mainarr").isJsonArray())
+                            { JsonArray mainarray = result.getAsJsonArray("mainarr");
+                                if (mainarray.size() != 0) {
+                                    for (int i = 0; i < mainarray.size(); i++) {
+                                        // "userid","userimageurl","username","ride_price","sourceaddress","destinationaddress","departuredata","departuretime",2
 
-                                    JsonObject js = mainarray.get(i).getAsJsonObject();
-                                    String Memberid = js.get("iMemberId").getAsString();
-                                    String userimageurl = js.get("image").getAsString();
-                                    String username = js.get("FirstName").getAsString();
-                                    String ride_price = js.get("price").getAsString();
-                                    String sourceaddress = js.get("from").getAsString();
-                                    String destinationaddress = js.get("to").getAsString();
-                                    String departuredate = js.get("start_date").getAsString();
-                                    String departuretime = js.get("start_time").getAsString();
-                                    Float rating = Float.valueOf(js.get("rating").getAsString());
+                                        JsonObject js = mainarray.get(i).getAsJsonObject();
+                                        String Memberid = js.get("iMemberId").getAsString();
+                                        String userimageurl = js.get("image").getAsString();
+                                        String username = js.get("FirstName").getAsString();
+                                        String ride_price = js.get("price").getAsString();
+                                        String sourceaddress = js.get("from").getAsString();
+                                        String destinationaddress = js.get("to").getAsString();
+                                        String departuredate = js.get("start_date").getAsString();
+                                        String departuretime = js.get("start_time").getAsString();
+                                        Float rating = Float.valueOf(js.get("rating").getAsString());
 
-                                    Log.e("result_ride_webservice", Memberid + userimageurl + username + ride_price + sourceaddress + destinationaddress + departuredate +
-                                            departuretime + rating);
-                                    mydata.add(new MyData(Memberid, userimageurl, username, ride_price, sourceaddress, destinationaddress, departuredate, departuretime, rating));
+                                        Log.e("result_ride_webservice", Memberid + userimageurl + username + ride_price + sourceaddress + destinationaddress + departuredate +
+                                                departuretime + rating);
+                                        mydata.add(new MyData(Memberid, userimageurl, username, ride_price, sourceaddress, destinationaddress, departuredate, departuretime, rating));
+                                    }
+
+                                    Intent intent = new Intent(context, RidesActivity.class);
+                                    startActivity(intent);
+                                    getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
+
                                 }
+                            }
+                            else {
+
 
                                 Intent intent = new Intent(context, RidesActivity.class);
                                 startActivity(intent);
                                 getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
+                               Toast.makeText(getActivity(),"No result found",Toast.LENGTH_SHORT).show();
+
 
                             }
 //                            String login_status=result.get("action").getAsString();
@@ -296,11 +314,50 @@ JsonArray mainarray=result.getAsJsonArray("mainarr");
         dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
     }
 
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth)
+    {
+        Date date2 = new Date();
+        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            monthOfYear = monthOfYear + 1;
+            date2 = date_format.parse(year + "-" + monthOfYear + "-" + dayOfMonth);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        String month=String.valueOf(monthOfYear+1);
+        SimpleDateFormat outDate = new SimpleDateFormat("dd MMM yyyy");
+        String n = outDate.format(date2).toString();
+        Log.e("n",n+"");
+        selectDateEditText.setText(n);
 
-        selectDateEditText.setText(year + "-" + month + "-" + dayOfMonth);
+
+//
+//        Date now = new Date();
+//        String datetimeStr = now.toString();
+//        System.out.println("1. " + datetimeStr);
+//        SimpleDateFormat format = new SimpleDateFormat(
+//                "DD MMM yyyy");
+//        System.out.println("2. " + format.format(now));
+//        selectDateEditText.setText(format.format(now));
+
+
+      //  Date date2 = new Date();
+//        SimpleDateFormat date_format = new SimpleDateFormat("DD MMMM yyyy");
+//        try {
+//            Date date2 = date_format.parse(year +" "+ monthOfYear+" " + dayOfMonth);
+//            selectDateEditText.setText(date_format.format(date2));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
+      //  SimpleDateFormat outDate = new SimpleDateFormat("MMMM DD yyyy");
+
+
+
+
+
+
+
 
     }
 
@@ -313,7 +370,7 @@ JsonArray mainarray=result.getAsJsonArray("mainarr");
                 Log.e(TAG, "Place: " + place.getName()+place.getLatLng().latitude+","+place.getName()+place.getLatLng().longitude+place.getAddress());
                // showMessage("The Place name is"+place.getName());
 
-                From_lat_long=String.valueOf(place.getLatLng().latitude)+","+String.valueOf(place.getLatLng().longitude);;
+                From_lat_long="("+String.valueOf(place.getLatLng().latitude)+"," +" "+String.valueOf(place.getLatLng().longitude)+")";
 
 
 
@@ -341,7 +398,7 @@ JsonArray mainarray=result.getAsJsonArray("mainarr");
                 editTextTo.setText(plaze);
                 place_To_Address=place.getAddress().toString().trim();
 
-                        From_lat_long=String.valueOf(place.getLatLng().latitude)+","+String.valueOf(place.getLatLng().longitude);
+                        To_lat_long="("+String.valueOf(place.getLatLng().latitude)+","+" "+String.valueOf(place.getLatLng().longitude)+")";
 
             }else if(resultCode==PlaceAutocomplete.RESULT_ERROR){
                 Status status = PlaceAutocomplete.getStatus(getActivity(),data);
@@ -389,7 +446,7 @@ JsonArray mainarray=result.getAsJsonArray("mainarr");
     }
 
     public void setupSelfSSLCert() {
-        final LoginActivity.Trust trust = new LoginActivity.Trust();
+        final Trust trust = new Trust();
         final TrustManager[] trustmanagers = new TrustManager[]{trust};
         SSLContext sslContext;
         try {
@@ -398,9 +455,9 @@ JsonArray mainarray=result.getAsJsonArray("mainarr");
             Ion.getInstance(context, "rest").getHttpClient().getSSLSocketMiddleware().setTrustManagers(trustmanagers);
             Ion.getInstance(context, "rest").getHttpClient().getSSLSocketMiddleware().setSSLContext(sslContext);
         } catch (final NoSuchAlgorithmException e) {
-            e.printStackTrace();
+         Log.e("NoSuchAlgori",e.toString());
         } catch (final KeyManagementException e) {
-            e.printStackTrace();
+            Log.e("KeyManagementException",e.toString());
         }
     }
 }

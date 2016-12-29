@@ -45,7 +45,7 @@ public class TimeFragment extends Fragment implements RangeBar.OnRangeBarChangeL
     @Override
     public void onRangeChangeListener(RangeBar rangeBar, int leftPinIndex, int rightPinIndex, String leftPinValue, String rightPinValue) {
 
-        Toast.makeText(getActivity(), "dfsfasdf", Toast.LENGTH_SHORT).show();
-        Log.d("RangeBar Values","LeftIndex"+leftPinIndex+"LeftPinValue"+leftPinValue);
+
+Log.e("leftPinIndex",leftPinIndex+"*****"+rightPinIndex);
     }
 }
