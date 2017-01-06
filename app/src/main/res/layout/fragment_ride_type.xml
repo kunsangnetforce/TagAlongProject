@@ -18,6 +18,7 @@
 
         <RadioGroup
             android:layout_marginTop="16dp"
+            android:id="@+id/radio_grp_ridetype"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 

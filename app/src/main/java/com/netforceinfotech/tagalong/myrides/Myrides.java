@@ -26,8 +26,8 @@ public class Myrides extends AppCompatActivity {
     private Menu menu;
     DrawerLayout drawerLayout;
     private Intent intent;
-    private DatabaseReference mDatabase;
-    private FirebaseAuth mFirebaseAuth;
+   // private DatabaseReference mDatabase;
+  //  private FirebaseAuth mFirebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -21,17 +21,30 @@
             android:text="@string/selecttimeframe" />
 
 
-        <com.appyvet.rangebar.RangeBar
-            xmlns:custom="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/rangeBar"
-            custom:pinRadius="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            custom:tickInterval="1"
-            custom:pinPadding="5dp"
-            custom:tickStart="1"
-            custom:tickEnd="24" />
+        <!--<com.appyvet.rangebar.RangeBar-->
+            <!--xmlns:custom="http://schemas.android.com/apk/res-auto"-->
+            <!--android:id="@+id/rangeBar"-->
+            <!--custom:pinRadius="12dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="72dp"-->
+            <!--custom:tickInterval="1"-->
+            <!--custom:pinPadding="5dp"-->
+            <!--custom:tickStart="1"-->
+            <!--custom:tickEnd="24" />-->
 
+
+
+        <me.bendik.simplerangeview.SimpleRangeView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/fixed_rangeview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:count="24"
+            app:start="0"
+            app:end="24"
+            app:movable="false"
+            app:minDistance="2"
+            />
     </LinearLayout>
 
 

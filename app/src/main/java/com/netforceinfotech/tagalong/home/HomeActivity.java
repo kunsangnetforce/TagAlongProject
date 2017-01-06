@@ -1,5 +1,6 @@
 package com.netforceinfotech.tagalong.home;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,20 +35,33 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.chat.MyChatActivity;
 import com.netforceinfotech.tagalong.dashboard.MyDashboardActivity;
 import com.netforceinfotech.tagalong.driverProfile.DriverProfile;
 import com.netforceinfotech.tagalong.home.findride.CantFindRideActivity;
 import com.netforceinfotech.tagalong.login.LoginActivity;
+import com.netforceinfotech.tagalong.login.SignUpActivity;
 import com.netforceinfotech.tagalong.myCars.MyCarActivity;
 import com.netforceinfotech.tagalong.myCars.carlist.CarListActivity;
 import com.netforceinfotech.tagalong.myprofile.MyProfileActivity;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -62,6 +76,7 @@ public class HomeActivity extends AppCompatActivity {
     SharedPreferences sp ;
     private DatabaseReference _user_group;
     String userid;
+    ProgressDialog pd;
     private boolean child_group_exist = false;
 
     boolean doubleBackToExitPressedOnce = false;
@@ -69,13 +84,15 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        pd=new ProgressDialog(this);
         sp = getSharedPreferences(
                 getString(R.string.preference_tagalong), Context.MODE_PRIVATE);
         context = this;
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         userid=sp.getString("userid","notlogin");
         Log.e("userid",userid);
-        setupFirebase(userid,"");
+       // setupFirebase(userid,"");
         //testFirebase();
         setupToolBar(getString(R.string.home).toUpperCase());
         setupNavigationView();
@@ -432,9 +449,8 @@ public class HomeActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (items.indexOf(menuItem)) {
                     case 0:
-                        intent = new Intent(context, MyProfileActivity.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.enter, R.anim.exit);
+                    callmyprofile_webservice();
+
                         break;
                     case 1:
                         intent = new Intent(context, CarListActivity.class);
@@ -465,7 +481,14 @@ public class HomeActivity extends AppCompatActivity {
                         overridePendingTransition(R.anim.enter, R.anim.exit);
                         break;
                     case 9:
+                        try{
                             LoginManager.getInstance().logOut();
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+
                             sp.edit().putString("userid","notlogin").commit();
                             intent = new Intent(context, LoginActivity.class);
                             startActivity(intent);
@@ -502,6 +525,93 @@ public class HomeActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
 
     }
+
+    public void callmyprofile_webservice() {
+
+
+
+        pd.show();
+        setupSelfSSLCert();
+        String userid = sp.getString("userid","notlogin");
+//        if(userid!="notlogin")
+//        {
+//
+//        }
+        JsonObject js=new JsonObject();
+        js.addProperty("type", "personal_information");
+
+
+        js.addProperty("MemberId",userid);
+
+
+        Log.e("js_login",js.toString());
+
+        // setupSelfSSLCert();
+        String Webservice_myprofile=getResources().getString(R.string.webservice_api_url);
+        Log.e("Webservice_login_url",Webservice_myprofile);
+
+
+                 Ion.with(context)
+                .load(Webservice_myprofile)
+                .setJsonObjectBody(js)
+                .asJsonObject().setCallback(new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+
+JsonObject js=result.getAsJsonObject("personal_information");
+                String memberId=js.get("iMemberId").getAsString();
+                String vAddress=js.get("vAddress").getAsString();
+                String vPhone=js.get("vPhone").getAsString();
+                String language=js.get("vLanguageCode").getAsString();
+                String Description=js.get("tDescription").getAsString();
+                String dob=js.get("iBirthYear").getAsString();
+                String vEmail=js.get("vEmail").getAsString();
+
+
+
+
+
+
+                intent = new Intent(context, MyProfileActivity.class);
+                intent.putExtra("vAddress",vAddress);
+                intent.putExtra("vPhone",vPhone);
+                intent.putExtra("language",language);
+                intent.putExtra("Description",Description);
+                intent.putExtra("dob",dob);
+                intent.putExtra("vEmail",vEmail);
+
+
+                startActivity(intent);
+                overridePendingTransition(R.anim.enter, R.anim.exit);
+
+                Log.e("JsonObject_result",result.toString());
+
+            }
+        });
+
+
+        if(pd!=null)
+        {
+            pd.dismiss();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
     @Override
     public void onBackPressed() {
 
@@ -528,5 +638,49 @@ public class HomeActivity extends AppCompatActivity {
         // do nothing.
     }
 
+    public static class Trust implements X509TrustManager {
 
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void checkClientTrusted(final X509Certificate[] chain, final String authType)
+                throws CertificateException {
+
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void checkServerTrusted(final X509Certificate[] chain, final String authType)
+                throws CertificateException {
+
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+
+    }
+
+    public void setupSelfSSLCert() {
+        final Trust trust = new Trust();
+        final TrustManager[] trustmanagers = new TrustManager[]{trust};
+        SSLContext sslContext;
+        try {
+            sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, trustmanagers, new SecureRandom());
+            Ion.getInstance(context, "rest").getHttpClient().getSSLSocketMiddleware().setTrustManagers(trustmanagers);
+            Ion.getInstance(context, "rest").getHttpClient().getSSLSocketMiddleware().setSSLContext(sslContext);
+        } catch (final NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (final KeyManagementException e) {
+            e.printStackTrace();
+        }
+    }
 }

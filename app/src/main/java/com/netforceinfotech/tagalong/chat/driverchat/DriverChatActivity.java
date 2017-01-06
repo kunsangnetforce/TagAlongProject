@@ -51,7 +51,7 @@ public class DriverChatActivity extends AppCompatActivity {
                 getString(R.string.preference_tagalong), Context.MODE_PRIVATE);
         userid=sp.getString("userid","notlogin");
         Log.e("userid",userid);
-        setupFirebase(userid,"");
+       // setupFirebase(userid,"");
         context=this;
         setupToolbar("Dummy Driver");
         setupRecyclerView(myDataList);
@@ -140,7 +140,7 @@ public class DriverChatActivity extends AppCompatActivity {
 
     private void setupFirebase(final String userid, String s2) {
         progressDialog.show();
-        checkUserGroupExist(userid);
+       // checkUserGroupExist(userid);
         _group = FirebaseDatabase.getInstance().getReference().child("chat_detail");
         _group.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -19,6 +19,7 @@
         <RadioGroup
             android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
+            android:id="@+id/radio_grp_carcomfort"
             android:layout_height="wrap_content">
 
             <RadioButton

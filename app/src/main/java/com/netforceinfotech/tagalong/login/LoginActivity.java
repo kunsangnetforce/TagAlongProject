@@ -80,9 +80,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ProgressDialog pd;
     public static SharedPreferences sp;
     String fbName, fbId,fbEmail,fbGender, photourl;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("message");
-    DatabaseReference mdatabase;
+   // FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //DatabaseReference myRef = database.getReference("message");
+    //DatabaseReference mdatabase;
     private EditText userLoginEmailEditText,userLoginPasswordEditText;
 
 
@@ -284,7 +284,7 @@ js.addProperty("vImage",photourl);
 
         Log.e("js_login",js.toString());
 
-        setupSelfSSLCert();
+       // setupSelfSSLCert();
         String Webservice_fb_login_url=getResources().getString(R.string.webservice_api_url);
         Log.e("Webservice_login_url",Webservice_fb_login_url);
 

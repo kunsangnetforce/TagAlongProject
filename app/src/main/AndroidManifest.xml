@@ -77,7 +77,8 @@
             android:name=".home.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".myCars.carlist.CarListActivity" />
-        <activity android:name=".myrides.Myrides"></activity>
+        <activity android:name=".myrides.Myrides" />
+        <activity android:name=".home.findride.ride_available.Ride_detail"></activity>
     </application>
 
 </manifest>

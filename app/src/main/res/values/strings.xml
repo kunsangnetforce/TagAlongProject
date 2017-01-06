@@ -82,6 +82,7 @@
     <string name="return_time">Return time</string>
     <string name="add_return_stop">Add return stop over</string>
     <string name="car_detail">Car Details</string>
+    <string name="car_details">Car details</string>
     <string name="select_car">Select your car</string>
     <string name="seat_available">Seat Available</string>
     <string name="luggage_space">Luggage Space</string>
@@ -113,12 +114,12 @@
     <string name="cvvEditText">566</string>
     <string name="pay_via_netbanking">Pay Via netbanking</string>
     <string name="pay_via_wallet">Pay via Wallet</string>
-    <string name="my_bookings">My Bookings</string>
-    <string name="rides_offer">Rides offered</string>
+    <string name="my_bookings">My Booking</string>
+    <string name="rides_offer">Ride offered</string>
     <string name="money_saved">Money Saved</string>
-    <string name="my_alert">My alerts</string>
+    <string name="my_alert">My alert</string>
     <string name="paid_by_you">Paid by You</string>
-    <string name="ratings">Ratings</string>
+    <string name="ratings">Rating</string>
     <string name="search">Search</string>
     <string name="mychat">My Chat</string>
     <string name="you">You</string>
@@ -174,8 +175,16 @@
     <string name="lang_hindi">Hindi</string>
     <string name="lang_tib">Tibetan</string>
     <string name="webservice_api_url">https://tag-along.net/webservice.php</string>
-    <string name="giverating" > <u>Give Rating</u></string>
-    <string name="message" ><u>Message</u></string>
-    <string name="preference_tagalong" >Tagalong</string>
-    <string name="Logout" >Logout</string>
+    <string name="giverating"> <u>Give Rating</u></string>
+    <string name="message"><u>Message</u></string>
+    <string name="preference_tagalong">Tagalong</string>
+    <string name="Logout">Logout</string>
+    <string name="schedule">Schdule:</string>
+    <string name="detour">Detour  :</string>
+    <string name="lauggagesize">Luggage Size :</string>
+    <string name="avail">(Available)</string>
+    <string name="brand">Brand   :</string>
+    <string name="type">Type   :</string>
+    <string name="plateno">Plate No</string>
+    <string name="bookthisride">Book this Ride</string>
 </resources>

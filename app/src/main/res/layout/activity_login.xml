@@ -18,18 +18,86 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/logo" />
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo2" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="30dp" />
+
+
+    <LinearLayout
+        android:id="@+id/facebookLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/facebookbgcolor_rounded"
+        android:orientation="horizontal"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+
+            android:scaleType="center"
+            android:src="@drawable/fblogo"
+            android:id="@+id/imageView4" />
+
+        <TextView
+            android:background="@color/white"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white" />
+
+
+        <TextView
+
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/FacebookLogin"
+            android:textColor="@color/white" />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button_fb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:text="@string/Or"
+            android:textColor="@color/white"
+            android:textStyle="normal" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="25dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -47,6 +115,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/email" />
 
                 <EditText
@@ -87,6 +156,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:scaleType="fitCenter"
                     android:id="@+id/password_logo"
                     android:src="@drawable/password" />
 
@@ -180,21 +250,7 @@
                 android:id="@+id/forgotPasswordtextView2" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="16dp"
-                android:text="@string/Or"
-                android:textColor="@color/white"
-                android:textStyle="normal" />
-        </LinearLayout>
 
     </LinearLayout>
 
@@ -211,50 +267,7 @@
         android:orientation="vertical">
 
 
-        <LinearLayout
-            android:id="@+id/facebookLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/facebookbgcolor_rounded"
-            android:orientation="horizontal"
-            android:padding="5dp">
 
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/fblogo" />
-
-            <TextView
-                android:background="@color/white"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
-                android:textColor="@color/white" />
-
-
-            <TextView
-
-                android:layout_marginLeft="10dp"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/FacebookLogin"
-                android:textColor="@color/white" />
-
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/login_button_fb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:visibility="gone"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp" />
-
-
-        </LinearLayout>
 
 
 

@@ -2,6 +2,7 @@ package com.netforceinfotech.tagalong.myprofile;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -30,8 +31,10 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     EditText etEmail, etDob, etContact, etAddress, etLanguage, etDescription;
     Switch mySwitch;
     LinearLayout linearLayoutEditProfile;
-    TextView textViewSave;
+    TextView textViewSave,tv_email,tv_dob,tv_phone,tv_address,tv_language,tv_description;
+
     Toolbar toolbar;
+    String email,dob,contact,address,Language,desription;
     ImageView smokeDropdownImageView,chatDropdownImageView,petsDropdownImageView,musicDropdownImageView,copilotDropdownImageView;
     Context context;
     DroppyMenuPopup droppyMenu;
@@ -42,10 +45,31 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
         initView();
+        Intent intent = getIntent();
+        if(intent!=null) {
+            email = intent.getStringExtra("vEmail");
+            dob = intent.getStringExtra("dob");
+            contact = intent.getStringExtra("vPhone");
+
+            Language = intent.getStringExtra("language");
+            address = intent.getStringExtra("vAddress");
+            desription = intent.getStringExtra("Description");
+            etEmail.setText(email);
+            etDob.setText(dob);
+            etContact.setText(contact);
+            etLanguage.setText(Language);
+            etAddress.setText(address);
+            etDescription.setText(desription);
+        }
+
+
         setupToolbar(getString(R.string.my_profile));
     }
 
     private void initView() {
+//        tv_email=(TextView)findViewById(R.id.tv_email);
+//        tv_dob=(TextView)findViewById(R.id.tv_dob) ;
+//        tv_phone=(TextView)findViewById(R.id.tv_dob) ;
         textViewSave = (TextView) findViewById(R.id.textViewSave);
         textViewSave.setOnClickListener(this);
         linearLayoutEditProfile = (LinearLayout) findViewById(R.id.linearLayoutEditProfile);

@@ -25,24 +25,33 @@ public class RidesActivity extends AppCompatActivity {
     Toolbar toolbar;
     private Intent intent;
     ArrayList<MyData> myDatas;
+   public static ArrayList<Ride_detail_pojo> ride_detail_pojos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rides);
+
         context=this;
         setupToolBar(getString(R.string.rides_available));
-        if(FindRideFragment.mydata.size()!=0)
-        setupRecyclerView(FindRideFragment.mydata);
-        else Log.e("null_findride",FindRideFragment.mydata.size()+"");
+        //ride_detail_pojos=new ArrayList<Ride_detail_pojo>();
+
+        if(FindRideFragment.ridedetail.size()!=0)
+        {
+            setupRecyclerView(FindRideFragment.mydata,FindRideFragment.ridedetail);
+        }
+        else{
+
+            Log.e("FindRideFra!=0","0");
+        }
     }
 
 
-    private void setupRecyclerView(ArrayList<MyData> mydata) {
+    private void setupRecyclerView(ArrayList<MyData> mydata,ArrayList<Ride_detail_pojo> ride_detail_pojos) {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
       //MyData mydata=new MyData("userid","userimageurl","username","ride_price","sourceaddress","destinationaddress","departuredata","departuretime",2);
         //myDatas.add(mydata);
-        MyAdapter myAdapter = new MyAdapter(context, mydata);
+        MyAdapter myAdapter = new MyAdapter(context, mydata,ride_detail_pojos);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(myAdapter);
@@ -78,6 +87,7 @@ public class RidesActivity extends AppCompatActivity {
             case R.id.itemFilter:
                 intent=new Intent(context, ApplyFilterActivity.class);
                 startActivity(intent);
+
                 return true;
             case android.R.id.home:
                 finish();
@@ -92,4 +102,8 @@ public class RidesActivity extends AppCompatActivity {
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }
