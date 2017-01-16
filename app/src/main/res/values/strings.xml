@@ -189,12 +189,9 @@
     <string name="message"><u>Message</u></string>
     <string name="preference_tagalong">Tagalong</string>
     <string name="Logout">Logout</string>
-    <string name="schedule">Schdule:</string>
-    <string name="detour">Detour  :</string>
-    <string name="lauggagesize">Luggage Size :</string>
+   <string name="lauggagesize">Luggage Size :</string>
     <string name="avail">(Available)</string>
     <string name="brand">Brand   :</string>
     <string name="type">Type   :</string>
-    <string name="plateno">Plate No</string>
-    <string name="bookthisride">Book this Ride</string>
+
 </resources>

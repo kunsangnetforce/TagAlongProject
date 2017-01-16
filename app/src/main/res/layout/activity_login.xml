@@ -19,58 +19,57 @@
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/logo2" />
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="30dp" />
 
-
     <LinearLayout
         android:id="@+id/facebookLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/facebookbgcolor_rounded"
-        android:orientation="horizontal"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
+        android:background="@drawable/facebookbgcolor_rounded"
+        android:orientation="horizontal"
         android:padding="5dp">
 
         <ImageView
-            android:layout_marginLeft="10dp"
+            android:id="@+id/imageView4"
             android:layout_width="35dp"
             android:layout_height="35dp"
 
+            android:layout_marginLeft="10dp"
             android:scaleType="center"
-            android:src="@drawable/fblogo"
-            android:id="@+id/imageView4" />
+            android:src="@drawable/fblogo" />
 
         <TextView
-            android:background="@color/white"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
+            android:background="@color/white"
             android:textColor="@color/white" />
 
 
         <TextView
 
-            android:layout_marginLeft="10dp"
-            android:textStyle="bold"
-            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
             android:text="@string/FacebookLogin"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/login_button_fb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:visibility="gone"
+            android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp" />
+            android:visibility="gone" />
 
 
     </LinearLayout>
@@ -86,9 +85,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="16dp"
             android:text="@string/Or"
             android:textColor="@color/white"
+            android:textSize="16dp"
             android:textStyle="normal" />
     </LinearLayout>
 
@@ -120,12 +119,12 @@
 
                 <EditText
                     android:id="@+id/userLoginEmailEditText"
-                    android:inputType="textEmailAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:background="@android:color/transparent"
                     android:hint="Email"
+                    android:inputType="textEmailAddress"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />
             </LinearLayout>
@@ -147,17 +146,17 @@
             android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-             >
+                android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/password_logo"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:scaleType="fitCenter"
-                    android:id="@+id/password_logo"
                     android:src="@drawable/password" />
 
                 <EditText
@@ -171,20 +170,21 @@
                     android:inputType="textPassword"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />
+
                 <TextView
 
+                    android:id="@+id/forgotPasswordtextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textStyle="bold"
+                    android:layout_alignBaseline="@+id/userLoginPasswordEditText"
                     android:layout_alignParentRight="true"
 
-                    android:text="@string/forgotPass"
                     android:layout_centerVertical="true"
-                    android:layout_alignBaseline="@+id/userLoginPasswordEditText"
+                    android:gravity="center"
+                    android:text="@string/forgotPass"
                     android:textColor="@color/white"
-                    android:id="@+id/forgotPasswordtextView" />
-            </RelativeLayout>
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -194,7 +194,6 @@
         </LinearLayout>
 
         <Button
-            android:textStyle="bold"
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -202,7 +201,8 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/login_button_rounded"
             android:text="@string/login"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -212,22 +212,22 @@
 
             <TextView
                 android:id="@+id/donthaveaccount"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/NoAccount"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/signupTextView"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:paddingLeft="4dp"
                 android:text="@string/SignUp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -236,43 +236,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
 
+                android:id="@+id/forgotPasswordtextView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textStyle="bold"
                 android:text="@string/forgotPass"
                 android:textColor="@color/white"
-                android:id="@+id/forgotPasswordtextView2" />
+                android:textStyle="bold" />
         </LinearLayout>
-
-
-
-    </LinearLayout>
-
-    <!--Facebook Layout-->
-
-    <LinearLayout
-        android:clickable="true"
-        android:id="@+id/facebookLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="15dp"
-        android:orientation="vertical">
-
-
-
-
-
 
 
     </LinearLayout>
 
 
 </LinearLayout>
+

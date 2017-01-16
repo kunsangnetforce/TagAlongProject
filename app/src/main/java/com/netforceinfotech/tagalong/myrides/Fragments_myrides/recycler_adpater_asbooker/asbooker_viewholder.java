@@ -9,7 +9,6 @@ import com.netforceinfotech.tagalong.R;
 /**
  * Created by Nishant on 12/19/2016.
  */
-
 public class Asbooker_viewholder extends RecyclerView.ViewHolder
 {
     RelativeLayout rl_message_chat;
