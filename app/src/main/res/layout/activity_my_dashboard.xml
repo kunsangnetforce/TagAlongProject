@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
+
     tools:context=".dashboard.MyDashboardActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="0dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
         <include
@@ -24,18 +26,21 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/textViewSave"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/appBar"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="170dp">
+                android:layout_height="180dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -47,7 +52,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="50"
-                        android:background="@color/colorPrimary">
+                       >
 
 
                     </RelativeLayout>
@@ -67,7 +72,9 @@
                     android:layout_centerInParent="true"
                     android:layout_marginTop="16dp"
                     android:text="Kunsang"
+                    android:textColor="@color/colorBlack"
                     android:textSize="16sp"
+
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -89,9 +96,11 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:layout_weight="50"
-                        android:background="@color/lightgrey"
+
+                        android:background="@drawable/round_cornor_pink"
                         android:gravity="center"
                         android:orientation="vertical"
+                        android:id="@+id/ll_mybooking"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp">
 
@@ -99,6 +108,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/my_bookings"
+                            android:textColor="@color/white"
                             android:textSize="15sp" />
 
                         <LinearLayout
@@ -111,13 +121,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="7"
+                                android:textColor="@color/white"
                                 android:textSize="24sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Rides"
-                                android:textColor="@color/colorAccent" />
+                                android:visibility="gone"
+                                android:textColor="@color/white" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -127,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:layout_weight="50"
-                        android:background="@color/lightgrey"
+                        android:background="@drawable/round_cornor_blue"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:paddingBottom="10dp"
@@ -137,6 +149,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/rides_offer"
+                            android:textColor="@color/white"
                             android:textSize="15sp" />
 
                         <LinearLayout
@@ -149,13 +162,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="7"
+                                android:textColor="@color/white"
                                 android:textSize="24sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Rides"
-                                android:textColor="@color/colorAccent" />
+                                android:visibility="gone"
+                                android:textColor="@color/white"
+                             />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -172,7 +188,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:layout_weight="50"
-                        android:background="@color/lightgrey"
+                        android:background="@drawable/round_cornor_purple"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:paddingBottom="10dp"
@@ -182,6 +198,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/money_saved"
+                            android:textColor="@color/white"
                             android:textSize="15sp" />
 
                         <LinearLayout
@@ -194,13 +211,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="40"
+                                android:textColor="@color/white"
                                 android:textSize="24sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="$"
-                                android:textColor="@color/colorAccent" />
+                                android:textColor="@color/white"
+                               />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -210,7 +229,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:layout_weight="50"
-                        android:background="@color/lightgrey"
+                        android:background="@drawable/round_cornor_green"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:paddingBottom="10dp"
@@ -220,6 +239,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/my_alert"
+                            android:textColor="@color/white"
                             android:textSize="15sp" />
 
                         <LinearLayout
@@ -232,6 +252,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="9"
+                                android:textColor="@color/white"
                                 android:textSize="24sp" />
 
                         </LinearLayout>
@@ -250,7 +271,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:layout_weight="50"
-                        android:background="@color/lightgrey"
+                        android:background="@drawable/round_cornor_orange"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:paddingBottom="10dp"
@@ -260,6 +281,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/paid_by_you"
+                            android:textColor="@color/white"
                             android:textSize="15sp" />
 
                         <LinearLayout
@@ -272,13 +294,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="7"
+                                android:textColor="@color/white"
                                 android:textSize="24sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="$"
-                                android:textColor="@color/colorAccent" />
+                                android:textColor="@color/white"
+                              />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -288,7 +312,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:layout_weight="50"
-                        android:background="@color/lightgrey"
+                        android:background="@drawable/round_cornor_cyan"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:paddingBottom="10dp"
@@ -298,6 +322,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/ratings"
+                            android:textColor="@color/white"
                             android:textSize="15sp" />
 
                         <LinearLayout
@@ -310,13 +335,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="4.3"
+                                android:textColor="@color/white"
                                 android:textSize="24sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/ratings"
-                                android:textColor="@color/colorAccent" />
+                                android:visibility="gone"
+                                android:textColor="@color/white"
+                                />
                         </LinearLayout>
 
                     </LinearLayout>

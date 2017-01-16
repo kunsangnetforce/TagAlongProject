@@ -35,4 +35,9 @@ public class PagerAdapterHome extends FragmentStatePagerAdapter {
     public int getCount() {
         return mNumOfTabs;
     }
+
+
+
+
+
 }

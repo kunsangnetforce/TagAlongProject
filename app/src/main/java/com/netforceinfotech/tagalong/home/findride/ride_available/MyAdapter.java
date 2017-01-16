@@ -57,6 +57,12 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, RideAvailDetailActivity.class);
+                Intent intent = new Intent(context, Ride_detail.class);
+                ride_detail_pojos_position.add(ride_detail_pojos.get(position));
+             //   Ride_detail.ride_detail_pojos.set(position,ride_detail_pojos.get(position));
+
+                //intent.putExtras("ridedetail",ride_detail_pojos.get(position))
+               // intent.
                 context.startActivity(intent);
             }
         });
@@ -71,6 +77,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemCount() {
         // return myDatas.size();
-        return 10;
+        return myDatas.size();
     }
 }

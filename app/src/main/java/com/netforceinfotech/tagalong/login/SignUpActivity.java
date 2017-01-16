@@ -312,6 +312,7 @@ String Webservice_signup_url=getResources().getString(R.string.webservice_api_ur
                         }
                         else{
                             showMessage("Incorrect Username or password ");
+                            showMessage("Sucessfully Signup");
                         }
 
                         if(pd!=null)

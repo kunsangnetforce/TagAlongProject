@@ -9,8 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.chat.MyChatActivity;
+import com.netforceinfotech.tagalong.myrides.Myrides;
 
 public class MyDashboardActivity extends AppCompatActivity {
     Context context;
@@ -26,6 +30,7 @@ public class MyDashboardActivity extends AppCompatActivity {
     private Intent intent;
     private DatabaseReference mDatabase;
     private FirebaseAuth mFirebaseAuth;
+    LinearLayout ll_myrides;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,28 @@ public class MyDashboardActivity extends AppCompatActivity {
 
         context=this;
         setupToolBar(getString(R.string.my_dashboard));
+        Initview(this);
+    }
+
+    private void Initview(MyDashboardActivity myDashboardActivity) {
+
+        ll_myrides=(LinearLayout)findViewById(R.id.ll_mybooking);
+        ll_myrides.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i =new Intent(MyDashboardActivity.this, Myrides.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+
+
+
+
+
+
+
     }
 
     private void setupToolBar(String app_name) {

@@ -7,7 +7,7 @@ public class MyData  {
     String id,imageurl,name,price,source,departuredate,departuretime,destination;
     float starRating;
 
-    MyData(String id,String imageurl,String name,String price,String source,String destination,String departuredate,String departuretime,float starRating) {
+    public MyData(String id, String imageurl, String name, String price, String source, String destination, String departuredate, String departuretime, float starRating) {
         this.id=id;
         this.imageurl=imageurl;
         this.name=name;

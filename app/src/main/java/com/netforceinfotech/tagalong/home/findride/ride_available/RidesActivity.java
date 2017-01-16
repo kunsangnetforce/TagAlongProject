@@ -7,33 +7,51 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.netforceinfotech.tagalong.R;
 import com.netforceinfotech.tagalong.chat.MyChatActivity;
+import com.netforceinfotech.tagalong.home.findride.FindRideFragment;
 import com.netforceinfotech.tagalong.home.findride.applyfilter.ApplyFilterActivity;
+
+import java.util.ArrayList;
 
 public class RidesActivity extends AppCompatActivity {
 
     Context context;
     Toolbar toolbar;
     private Intent intent;
-
+    ArrayList<MyData> myDatas;
+   public static ArrayList<Ride_detail_pojo> ride_detail_pojos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rides);
+
         context=this;
         setupToolBar(getString(R.string.rides_available));
-        setupRecyclerView();
+        //ride_detail_pojos=new ArrayList<Ride_detail_pojo>();
+
+        if(FindRideFragment.ridedetail.size()!=0)
+        {
+            setupRecyclerView(FindRideFragment.mydata,FindRideFragment.ridedetail);
+        }
+        else{
+
+            Log.e("FindRideFra!=0","0");
+        }
     }
 
 
-    private void setupRecyclerView() {
+    private void setupRecyclerView(ArrayList<MyData> mydata,ArrayList<Ride_detail_pojo> ride_detail_pojos) {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        MyAdapter myAdapter = new MyAdapter(context, null);
+
+      //MyData mydata=new MyData("userid","userimageurl","username","ride_price","sourceaddress","destinationaddress","departuredata","departuretime",2);
+        //myDatas.add(mydata);
+        MyAdapter myAdapter = new MyAdapter(context, mydata,ride_detail_pojos);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(myAdapter);
@@ -69,6 +87,7 @@ public class RidesActivity extends AppCompatActivity {
             case R.id.itemFilter:
                 intent=new Intent(context, ApplyFilterActivity.class);
                 startActivity(intent);
+
                 return true;
             case android.R.id.home:
                 finish();
@@ -83,4 +102,8 @@ public class RidesActivity extends AppCompatActivity {
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

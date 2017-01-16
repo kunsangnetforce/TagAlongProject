@@ -87,6 +87,7 @@ public class RideDetailActivity extends AppCompatActivity implements View.OnClic
             Bundle bundle = getIntent().getExtras();
             oneway = bundle.getBoolean("oneway");
         } catch (Exception ex) {
+            Log.e("Exception",ex.toString());
 
         }
         if (oneway) {

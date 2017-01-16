@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by Gowtham Chandrasekar on 31-07-2015.
  */
-public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
     private static final int YOU = 0;
     private static final int OTHER = 1;
@@ -40,27 +40,28 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         if (viewType==YOU) {
             View view = inflater.inflate(R.layout.row_my_comment, parent, false);
             MyHolder viewHolder = new MyHolder(view);
+
             return viewHolder;
         } else {
             View view = inflater.inflate(R.layout.row_other_comment, parent, false);
             MyHolder viewHolder = new MyHolder(view);
+
             return viewHolder;
         }
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    public void onBindViewHolder(MyHolder viewHolder , final int position) {
 
-            }
-        });
+
+        viewHolder.message.setText(myDatas.get(position).message);
+        viewHolder.username.setText(myDatas.get(position).name);
+
 
     }
 
